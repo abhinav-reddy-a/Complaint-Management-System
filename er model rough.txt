@@ -1,0 +1,34 @@
+*Student List:*
+RollNo (primary key, type int)
+Studentemail (type varchar)
+Student name (type varchar)
+
+*Secy List:*
+Secy ID (primary key, type int)
+Secyemail (type varchar)
+Secy name (type varchar)
+RollNo (type int)
+Department ID (foreign key, type int)
+
+*Admin List:*
+Admin ID (primary key, type int)
+Adminemail (type varchar)
+Admin name (type varchar)
+Department ID (foreign key, type int)
+
+*Complaint List:*
+Complaint ID (primary key, type int)
+Complaint Subject (type varchar)
+Complaint_text (type varchar)
+Student ID (foreign key, type int)
+secy ID (foreign key, type int)
+Admin ID (foreign key, type int)
+Department ID (foreign key, type int)
+Resolved_or_not (type binary)
+
+*Department List:*
+Department ID (primary key, type int)
+Department Name (type varchar)
+
+
+
