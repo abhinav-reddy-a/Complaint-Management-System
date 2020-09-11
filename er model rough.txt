@@ -7,7 +7,6 @@ Student name (type varchar)
 Secy ID (primary key, type int)
 Secyemail (type varchar)
 Secy name (type varchar)
-RollNo (type int)
 Department ID (foreign key, type int)
 
 *Admin List:*
@@ -20,6 +19,7 @@ Department ID (foreign key, type int)
 Complaint ID (primary key, type int)
 Complaint Subject (type varchar)
 Complaint_text (type varchar)
+Date (type date)
 Student ID (foreign key, type int)
 secy ID (foreign key, type int)
 Admin ID (foreign key, type int)
@@ -30,5 +30,16 @@ Resolved_or_not (type binary)
 Department ID (primary key, type int)
 Department Name (type varchar)
 
+*Reply List:*
+Reply ID (primary key, type int)
+Reply text (type varchar)
+Date (type date)
+Complaint ID(foreign key)
 
-
+Student - Complaint	1-many  (partial-complete)
+Secy - Complaint	1-many  (partial-partial)
+Secy - Department	1-1     (complete-complete)
+Admin - Department	1-1	(complete-complete)
+Admin - Complaint	1-many  (partial-partial)
+Department - Complaint	1-many	(partial-complete)
+Reply - Complaint	many-1  (complete-partial)

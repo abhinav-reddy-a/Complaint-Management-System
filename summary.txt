@@ -8,9 +8,13 @@
 -> Sign out
 
 *Complaint:*
--> Textbox to type complaint
+-> Textbox to type complaint and the subject
 -> Dropdown to select department concerned:
-	-> Here if he chooses academic department, complaint will be sent to acad secy directly
+	-> Here if he chooses academic department, complaint will be sent to acad secy/admin directly
+-> view the complaint in the web-app
+-> satisfied or not(after reply)
+-> can refer to the complaint using the given ID
+-> view the complaint status	
 -> Submit complaint button
 
 ------------------------------------------------------------------------------------------------
@@ -24,7 +28,8 @@
 -> Shd be able to view complaint
 -> can forward the complaint to admin
 -> can reply himself to student directly
--> He might want to forward the email to multiple heads, so we'll add checkbox for choosing emailIds
+-> He might want to forward the complaint to multiple heads, so we'll add checkbox for choosing emailIds
+-> set the complaint status
 -> Have an option to mark that the complaint has been addressed
 
 ------------------------------------------------------------------------------------------------
@@ -37,18 +42,13 @@
 *Complaint:*
 -> Should be able to view complaint sent by secy
 -> Shd be able to send reply directly to secy or student
+-> set the complaint status
 -> Have an option to mark that the complaint has been addressed
 
 ------------------------------------------------------------------------------------------------
 
 *Home:*
-
 -> Anybody can use this
 -> It will be like an archive
--> As soon as the complaint has been addressed, the complaint, replies, and people involved will be added to this list
+-> As soon as the complaint has been addressed, the complaint, replies will be added to this list
 -> we can add a search bar, where one can check if similar queries had been raised earlier too
-
-
-
-
-
