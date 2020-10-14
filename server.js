@@ -2,7 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
-
+const db = require('./db'); //database connection for queries
 
 var port = process.env.PORT || 3000;
 
