@@ -2,8 +2,8 @@ const sql = require('mysql')
 
 const db = sql.createConnection({
     host: "localhost", //host where mysql database hosted
-    user: "lokesh", //username for accessing database
-    password: "12345",
+    user: "kushaan", //username for accessing database
+    password: "abc@123",
     database:"complaint_management" //port: default to 3306 canbe changed
 })
 

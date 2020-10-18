@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Complaint Management System</title>
+</head>
+<body>
+	<a href="/login">Login</a>
+	<table>
+		<tr><th>Complaint ID</th><th>Complaint Subject</th><th>Department</th><th>Date</th></tr>
+		<% for(var i = 0;i<result.length;i++){%>
+		<tr><td><a href="/complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td><td><%=result[i].complaint_subject%></td><td><%=result[i].dept_name%></td><td><%=result[i].date%></td></tr>
+		<%}%>
+	</table>
+
+</body>
+</html>

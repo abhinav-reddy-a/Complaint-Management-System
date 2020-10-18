@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Complaint Management System</title>
+</head>
+<body>
+	<a href="/">Back to Home</a>
+	<p>Complaint Id: <%=result[0].complaint_id%></p>
+	<p>Complaint Subject: <%=result[0].complaint_subject%></p>
+	<p>Complaint Text: <%=result[0].complaint_text%></p>
+	<p>Department Name: <%=result[0].dept_name%></p>
+	<br/>
+	<% for(var i=0;i<result.length;i++ ){ %>
+	   	<p>Date: <%=result[i].date%></p>
+		<% 	if(result[i].from_to[0]=='S'){%>
+			<p>Secy: <%=result[i].reply_text%></p>
+		<% 	}else if(result[i].from_to[0]=='T'){%>
+			<p>Student: <%=result[i].reply_text%></p>
+		<% 	}else{	%>
+			<p>Admin: <%=result[i].reply_text%></p>
+		<% 	}%>
+		<br/>
+	<% }%>
+
+</body>
+</html>
