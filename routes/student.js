@@ -38,6 +38,24 @@ router.get('/complaint',(req,res)=>{
 	});
 })
 
+router.post('/complaint',(req,res)=>{
+
+	var query = 'INSERT INTO reply_list SET ?'
+	var post = {
+		reply_text : req.body.reply_text,
+		from_to : 'TS',
+		complaint_id : req.query.id,
+		date : req.body.date
+	}
+	console.log(query);
+	db.query(query,post,(err,result)=> {
+		if(err) console.log(err);
+		console.log(result);
+		res.redirect('/student/home');
+	})
+
+})
+
 router.get('/new_complaint',(req,res)=>{
 	res.render('new_complaint.ejs');
 })

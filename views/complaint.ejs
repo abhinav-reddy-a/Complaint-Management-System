@@ -3,10 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>Complaint Management System</title>
+    <script>
+        function setDate(){
+            var date = document.getElementById('date');
+            var d = new Date();
+            date.value = d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear();
+        }
+    </script>
 </head>
-<body>
+<body onload="setDate()">
 	<a href="/">Back to Home</a>
-	<a href="../home">Back to StudentHome</a> <!-- will fix this when we add authentication -->
 	<p>Complaint Id: <%=result[0].complaint_id%></p>
 	<p>Complaint Subject: <%=result[0].complaint_subject%></p>
 	<p>Complaint Text: <%=result[0].complaint_text%></p>
@@ -25,5 +31,13 @@
 			<br/>
 		<% }%>
 	<%}%>
+	<span style="background-color: yellow;">functions for student who has logged in<br/>
+	will fix this when we add authentication</span><br/><br/>
+	<a href="../home">Back to StudentHome</a> 
+	<form method="post">
+		<p>Reply to this: </p><p><textarea name="reply_text" rows="4" cols="50"></textarea></p>
+		<p>Date: <input type="text" name="date" readonly id="date"></p>
+		<button type="Submit">Send</button>
+	</form>
 </body>
 </html>
