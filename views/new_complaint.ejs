@@ -1,61 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>make complains</title>
 </head>
 <body>
-<br>
-<br>
-<br>
-<table width="600" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#336699">
-  <tr >
-    <td>Make Complains </td>
-  </tr>
-  <tr>
-    <td>
-        <table width="100%" border="0" cellpadding="2" cellspacing="1" >
-          <tr align="center">
-            <td colspan="2">&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;Complain Type </td>
-            <td>
-			<select name="compType" required>
-        <option> &nbsp;&nbsp;Select Complain Type&nbsp;</option>
-				<option value="Academics">Academics related</option>
-				<option value="Sports">Sports related</option>
-                <option value="Cultural">Culturals related </option>
-                <option value="Mess">Mess/Food related </option>
-                <option value="General">other  </option>
-            
+    <form method="post">
+        <p>
+            Related to:
+            <select name="dept_id" required>
+                <option value="" disabled selected hidden>Choose a dept</option>
+                <option value="1">Academic</option>
+                <option value="2">Sport</option>
+                <option value="3">Cafeteria</option>
+            </select>   
+        </p>
+        <p>Complaint Subject: <input type="text" name="complaint_subject"></p>
+        <p>Complaint Text:</p><textarea name="complaint_text" rows="4" cols="50"></textarea><br/>
+        <button type="submit">Register Complaint</button>
+    </form>
 
-		  </select>          </tr>
-          <tr>
-            <td>&nbsp;Complain Title </td>
-            <td><input name="compTitle" type="text"  value="" size="50" maxlength="100" /></td>
-          </tr>
-
-          <tr>
-            <td valign="top">&nbsp;Complain Description .</td>
-            <td><textarea name="compDesc" cols="50" rows="6" ></textarea></td>
-          </tr>
-
-
-          <tr>
-            <td width="200">&nbsp;</td>
-            <td width="372">&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td><input name="btnLogin" type="submit"  value=" Make Complain  "></td>
-          </tr>
-          <!---submission page needs to be created-->
-      </table></td>
-  </tr>
-</table>
-</form>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 </body>
 </html>

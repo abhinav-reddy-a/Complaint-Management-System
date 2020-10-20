@@ -68,3 +68,15 @@ app.get('/student_history',(req,res)=>{
 	    res.render('student_history.ejs',{result:result});
 	});
 })
+
+app.get('/new_complaint',(req,res)=>{
+	res.render('new_complaint.ejs');
+})
+
+app.post('/new_complaint',(req,res)=>{
+	var dept_id = req.body.dept_id;
+	var complaint_subject = req.body.complaint_subject;
+	var complaint_text = req.body.complaint_text;
+	var studentId = 2;
+	var query = "Insert into complaint_list values(";
+})
