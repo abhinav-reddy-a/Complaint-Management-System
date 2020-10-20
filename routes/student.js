@@ -2,10 +2,11 @@ const express = require('express');
 var router = express.Router();
 const db = require('../db'); 
 
-
 router.get('/home',(req,res)=>{
 	var studentId = 2;
-	var query = "SELECT complaint_id,complaint_subject,date,dept_name FROM complaint_list INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0;"
+	var query = "SELECT complaint_id,complaint_subject,date,dept_name \
+				FROM complaint_list INNER JOIN department_list \
+				ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0;"
 	db.query(query, function (err, result, fields) {
 		if (err) throw err;
 		console.log(result);
@@ -15,7 +16,9 @@ router.get('/home',(req,res)=>{
 
 router.get('/history',(req,res)=>{
 	var studentId = 2;
-	var query = "SELECT complaint_id,complaint_subject,date,dept_name FROM complaint_list INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1;"
+	var query = "SELECT complaint_id,complaint_subject,date,dept_name \
+				FROM complaint_list INNER JOIN department_list \
+				ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1;"
 	db.query(query, function (err, result, fields) {
 		if (err) throw err;
 		console.log(result);
@@ -25,7 +28,9 @@ router.get('/history',(req,res)=>{
 
 router.get('/complaint',(req,res)=>{
 	var id = req.query.id;
-	var query = 'SELECT complaint_list.complaint_id,complaint_subject,complaint_text,complaint_list.date,dept_name,reply_text,reply_list.date,from_to FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id) INNER JOIN reply_list ON reply_list.complaint_id = complaint_list.complaint_id and complaint_list.complaint_id = '+id+');' ;
+	var query = 'SELECT complaint_list.complaint_id,complaint_subject,complaint_text,complaint_list.date,dept_name,reply_text,reply_list.date,from_to \
+				 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+') \
+				 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
 	db.query(query, function (err, result, fields) {
 	if (err) throw err;
 	    console.log(result);

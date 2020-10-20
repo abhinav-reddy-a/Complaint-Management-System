@@ -4,10 +4,10 @@ const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const db = require('./db'); //database connection for queries
 
-
 var indexRouter = require('./routes/index'); //routes defined in other files
 var studentRouter=require('./routes/student');
-
+//var secyRouter = require('./routes/secy');
+//var adminRouter = require('./routes/admin');
 
 var port = process.env.PORT || 3000;
 
@@ -33,5 +33,9 @@ app.listen(port, () => console.log(`listening to PORT ${port}...`));
 app.use('/',indexRouter); //router for home page before login
 
 app.use('/student',studentRouter); // route for studentpage
+
+// app.use('/secy',secyRouter); // route for secypage
+
+// app.use('/admin',adminRouter); // route for adminpage
 
 module.exports = app;
