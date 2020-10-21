@@ -24,8 +24,4 @@ router.get('/complaint',(req,res)=>{
 	});
 })
 
-router.get('/login',(req,res)=>{
-res.render('login.ejs');
-})
-
 module.exports = router;
