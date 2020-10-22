@@ -3,6 +3,7 @@ var router = express.Router();
 const db = require('../db'); 
 
 router.get('/home',(req,res)=>{
+	console.log('in secy page:',req.session.user);
 	var secyId = 2;
 	var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 				FROM complaint_list INNER JOIN department_list \
