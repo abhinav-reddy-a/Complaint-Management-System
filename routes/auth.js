@@ -1,7 +1,5 @@
 const passport = require('passport');
 var router = require('express').Router();
-const mongoose = require('mongoose');
-const User = mongoose.model('users');
 var db = require('../db');
 
 router.get('/google',

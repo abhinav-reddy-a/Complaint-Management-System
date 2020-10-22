@@ -6,14 +6,4 @@ const userSchema = new Schema({
 	username:String
 });
 
-const adminSchema = new Schema({
-	googleId:String
-});
-
-const secySchema = new Schema({
-	googleId:String
-});
-
 mongoose.model("users",userSchema);
-mongoose.model("admins",adminSchema);
-mongoose.model("secies",secySchema);

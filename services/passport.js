@@ -3,8 +3,6 @@ const keys = require('../config/keys');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
-const Admin = mongoose.model('admins');
-const Secy = mongoose.model('secies');
 
 passport.serializeUser((user,done)=>{
     done(null,user.id);
