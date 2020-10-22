@@ -2,8 +2,7 @@ const passport = require('passport');
 var router = require('express').Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
-const Admin = mongoose.model('admins');
-const Secy = mongoose.model('secies');
+var db = require('../db');
 
 router.get('/google',
 	passport.authenticate('google',{
@@ -13,48 +12,8 @@ router.get('/google',
 router.get('/google/callback',
 	passport.authenticate('google'), 
 	(req,res)=>{
-		//res.send(req.user);
-		console.log(req.user.id);
-		User.findOne({googleId:req.user.googleId})
-	    .then((existingUser)=>{
-	        if(existingUser){
-	        	console.log('user found');
-	        	res.redirect('/student/home');
-	        }else{
-	        	console.log(User);
-	        	console.log('not found');
-	        	checkSecy(req,res);
-	        }
-	    })
-	    //console.log('hello');
+		checkEmail(req.user.username,res);
 }); 
-
-async function checksecy(req,res){
-	Secy.findOne({googleId:req.user.googleId})
-	    .then((existingUser)=>{
-	        if(existingUser){
-	        	console.log('secy found');
-	        	res.redirect('/secy/home');
-	        }else{
-	        	console.log('secy not found');
-	        	checkAdmin(req,res);
-	        }
-	    })
-}
-
-
-async function checkAdmin(req,res){
-	Admin.findOne({googleId:req.user.googleId})
-	    .then((existingUser)=>{
-	        if(existingUser){
-	        	console.log('admin found');
-	        	res.redirect('/admin/home');
-	        }else{
-	        	console.log('admin not found');
-	        	res.redirect('./');
-	        }
-	    })
-}
 
 router.get('/login',(req,res)=>{
 res.render('login.ejs');
@@ -67,14 +26,29 @@ router.get('/logout',(req,res)=>{
 
 module.exports = router;
 
-// User.findOne({googleId:profile.id})
-//     .then((existingUser)=>{
-//         if(!existingUser){
-//             new User({googleId:profile.id}).save()
-//             .then((user)=>{
-//                 done(null,user);
-//             })
-//         }else{
-//             done(null,existingUser);
-//         }
-//     })
+//secy, find 'secy' in email id
+//student, starts with cse+no...,ee,me,ce,mems,phd,msc,mscphd,mt,mtech,mtphd
+
+function checkEmail(email,res){
+	var query = 'select secy_email from secy_list where secy_name in("'+email+'");'
+	db.query(query, function (err, result, fields) {
+	if (err) throw err;
+		console.log(query);
+	    console.log(result);
+	    if(typeof result[0] !='undefined'){
+	    	res.redirect('/secy/home');
+	    }else{
+	    	query = 'select admin_email from admin_list where admin_email in("'+email+'");'
+			db.query(query, function (err1, result1, fields1) {
+			if (err1) throw err1;
+			    console.log(result1);
+			    if(typeof result1[0] !='undefined'){
+			    	res.redirect('/admin/home');
+			    }
+			    else{
+			    	res.redirect('/student/home');
+			    }
+			});
+	    }
+	});
+}

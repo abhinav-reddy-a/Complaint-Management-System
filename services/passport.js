@@ -24,8 +24,9 @@ passport.use(new GoogleStrategy({
   (accessToken, refreshToken, profile, done) => {
     User.findOne({googleId:profile.id})
     .then((existingUser)=>{
+        console.log('email: ',profile.emails[0].value);
         if(!existingUser){
-            new User({googleId:profile.id}).save()
+            new User({googleId:profile.id,username:profile.emails[0].value}).save()
             .then((user)=>{
                 done(null,user);
             })
