@@ -6,14 +6,14 @@ var keys = require('../config/keys');
 router.get('/home',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.secyKey){
-			var studentId = 2;
+			var secyId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
-						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0;"
+						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 0;"
 			db.query(query, function (err, result, fields) {
 				if (err) throw err;
 				console.log(result);
-				res.render('student_home.ejs',{result:result});
+				res.render('secy_home.ejs',{result:result});
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -26,14 +26,14 @@ router.get('/home',(req,res)=>{
 router.get('/history',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.secyKey){
-			var studentId = 2;
+			var secyId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
-						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1;"
+						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 1;"
 			db.query(query, function (err, result, fields) {
 				if (err) throw err;
 				console.log(result);
-				res.render('student_history.ejs',{result:result});
+				res.render('secy_history.ejs',{result:result});
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -53,7 +53,7 @@ router.get('/complaint',(req,res)=>{
 			db.query(query, function (err, result, fields) {
 			if (err) throw err;
 			    console.log(result);
-			    res.render('complaint.ejs',{result:result});
+			    res.render('complaint.ejs',{result:result,role:'secy'});
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -68,7 +68,7 @@ router.post('/complaint',(req,res)=>{
 	var query = 'INSERT INTO reply_list SET ?'
 	var post = {
 		reply_text : req.body.reply_text,
-		from_to : 'T',
+		from_to : 'S',
 		complaint_id : req.query.id,
 		date : req.body.date
 	}
@@ -76,7 +76,7 @@ router.post('/complaint',(req,res)=>{
 	db.query(query,post,(err,result)=> {
 		if(err) console.log(err);
 		console.log(result);
-		res.redirect('/student/home');
+		res.redirect('/secy/home');
 	})
 
 })
@@ -84,7 +84,7 @@ router.post('/complaint',(req,res)=>{
 router.get('/new_complaint',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.secyKey){
-			res.render('new_complaint.ejs');
+			res.render('new_complaint.ejs',{secyId:req.session.id});
 		}else{
 			res.redirect('../auth/logout');
 		}
@@ -102,9 +102,9 @@ router.post('/new_complaint',(req,res) => { //post method for submitting a compl
 				complaint_subject : req.body.complaint_subject,
 				complaint_text : req.body.complaint_text,
 				date : req.body.date,
-				student_id : req.body.student_id,
+				student_id : 'NULL',
 				admin_id : req.body.admin_id,
-				secy_id : req.body.dept_id,
+				secy_id : req.body.secy_id,
 				dept_id : req.body.dept_id,
 				complaint_id : null,
 				resolved : 0
@@ -113,8 +113,26 @@ router.post('/new_complaint',(req,res) => { //post method for submitting a compl
 			db.query(query,post,(err,result)=> {
 				if(err) console.log(err);
 				console.log(result);
-				res.redirect('/student/home');
+				res.redirect('/secy/home');
 			})
+		}else{
+			res.redirect('../auth/logout');
+		}
+	}else{
+		res.redirect('../');
+	}
+})
+
+router.get('/delete',(req,res)=>{
+	if(typeof req.user!='undefined'){
+		if(req.session.user == keys.secyKey){
+			var id = req.query.id;
+			var query = 'DELETE FROM complaint_list where complaint_id = '+id+' and secy_id = '+req.session.id;
+			db.query(query, function (err, result, fields) {
+			if (err) throw err;
+			    console.log(result);
+			    res.redirect('/secy/home');
+			});
 		}else{
 			res.redirect('../auth/logout');
 		}
