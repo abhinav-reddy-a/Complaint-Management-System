@@ -53,7 +53,7 @@ router.get('/complaint',(req,res)=>{
 			db.query(query, function (err, result, fields) {
 			if (err) throw err;
 			    console.log(result);
-			    res.render('complaint.ejs',{result:result});
+			    res.render('complaint.ejs',{result:result,role:'student'});
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -84,7 +84,7 @@ router.post('/complaint',(req,res)=>{
 router.get('/new_complaint',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.studentKey){
-			res.render('new_complaint.ejs');
+			res.render('new_complaint.ejs',{studentId:req.session.id});
 		}else{
 			res.redirect('../auth/logout');
 		}
@@ -115,6 +115,24 @@ router.post('/new_complaint',(req,res) => { //post method for submitting a compl
 				console.log(result);
 				res.redirect('/student/home');
 			})
+		}else{
+			res.redirect('../auth/logout');
+		}
+	}else{
+		res.redirect('../');
+	}
+})
+
+router.get('/delete',(req,res)=>{
+	if(typeof req.user!='undefined'){
+		if(req.session.user == keys.studentKey){
+			var id = req.query.id;
+			var query = 'DELETE FROM complaint_list where complaint_id = '+id+' and student_id = '+req.session.id;
+			db.query(query, function (err, result, fields) {
+			if (err) throw err;
+			    console.log(result);
+			    res.redirect('/student/home');
+			});
 		}else{
 			res.redirect('../auth/logout');
 		}

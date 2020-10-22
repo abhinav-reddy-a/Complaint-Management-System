@@ -12,7 +12,12 @@
     </script>
 </head>
 <body onload="setDate()">
-	<a href="/">Back to Home</a>
+	<%if(role == 'general'){%>
+		<a href="/">Back to Home</a>
+	<%}%>
+	<%if(role == 'student'){%>
+		<a href="../home">Back to Home</a> 
+	<%}%>
 	<%if(typeof result != 'undefined'){%>
 		<p>Complaint Id: <%=result[0].complaint_id%></p>
 		<p>Complaint Subject: <%=result[0].complaint_subject%></p>
@@ -33,13 +38,14 @@
 			<% }%>
 		<%}%>
 	<%}%>
-	<span style="background-color: yellow;">functions for student who has logged in<br/>
-	will fix this when we add authentication</span><br/><br/>
-	<a href="../home">Back to StudentHome</a> 
-	<form method="post">
-		<p>Reply to this: </p><p><textarea name="reply_text" rows="4" cols="50"></textarea></p>
-		<p>Date: <input type="text" name="date" readonly id="date"></p>
-		<button type="Submit">Send</button>
-	</form>
+	<%if(role == 'student'){%>
+		<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
+		<a href="<%=deleteLink%>">Delete Complaint</a>
+		<form method="post">
+			<p>Reply to this: </p><p><textarea name="reply_text" rows="4" cols="50"></textarea></p>
+			<p>Date: <input type="text" name="date" readonly id="date"></p>
+			<button type="Submit">Send</button>
+		</form>
+	<%}%>
 </body>
 </html>

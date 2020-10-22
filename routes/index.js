@@ -20,7 +20,7 @@ router.get('/complaint',(req,res)=>{
 	db.query(query, function (err, result, fields) {
 	if (err) throw err;
 	    console.log(result);
-	    res.render('complaint.ejs',{result:result});
+	    res.render('complaint.ejs',{result:result,role:'general'});
 	});
 })
 
