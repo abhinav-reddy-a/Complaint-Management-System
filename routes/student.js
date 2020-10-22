@@ -6,7 +6,7 @@ var keys = require('../config/keys');
 router.get('/home',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.studentKey){
-			var studentId = 2;
+			var studentId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
 						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0;"
@@ -26,7 +26,7 @@ router.get('/home',(req,res)=>{
 router.get('/history',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.studentKey){
-			var studentId = 2;
+			var studentId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
 						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1;"
