@@ -4,7 +4,8 @@ var db = require('../db');
 
 router.get('/',(req,res)=>{
 	//Select all customers and return the result object:
-	var query = "SELECT complaint_id,complaint_subject,date,dept_name FROM complaint_list INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id;"
+	var query = "SELECT complaint_id,complaint_subject,date,dept_name FROM complaint_list \
+				INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id order by date desc;"
 	db.query(query, function (err, result, fields) {
 	if (err){
 		console.log(err);

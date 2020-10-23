@@ -29,7 +29,7 @@ module.exports = router;
 //student, starts with cse+no...,ee,me,ce,mems,phd,msc,mscphd,mt,mtech,mtphd
 
 function checkEmail(email,req,res){
-	var query = 'select secy_id from secy_list where secy_email = "'+email+'";'
+	var query = 'select secy_id from secy_list where secy_name = "'+email+'";'
 	db.query(query, function (err, result, fields) {
 		if (err){
 			console.log(err);

@@ -10,7 +10,7 @@
     <tr><th>Complaint ID</th><th>Complaint Subject</th><th>Department</th><th>Date</th></tr>
     <%if(typeof result != 'undefined'){%>
 	    <% for(var i = 0;i<result.length;i++){%>
-	    <tr><td><a href="./complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td><td><%=result[i].complaint_subject%></td><td><%=result[i].dept_name%></td><td><%=result[i].date%></td></tr>
+	    <tr><td><a href="./complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td><td><%=result[i].complaint_subject%></td><td><%=result[i].dept_name%></td><td><%=String(result[i].date).slice(0,15)%></td></tr>
 	    <%}%>
 	<%}%>
   </table>

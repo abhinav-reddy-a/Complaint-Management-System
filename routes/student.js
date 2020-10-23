@@ -9,7 +9,7 @@ router.get('/home',(req,res)=>{
 			var studentId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
-						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0;"
+						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0 order by date desc;"
 			db.query(query, function (err, result, fields) {
 				if (err){
 					console.log(err);
@@ -34,7 +34,7 @@ router.get('/history',(req,res)=>{
 			var studentId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
-						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1;"
+						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1 order by date desc;"
 			db.query(query, function (err, result, fields) {
 				if (err){
 					console.log(err);

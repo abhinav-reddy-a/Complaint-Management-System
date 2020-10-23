@@ -3,15 +3,61 @@
 <head>
     <meta charset="utf-8">
     <title>Complaint Management System</title>
+    <script>
+    	function filterByDept(){
+    		var data = document.getElementsByClassName('data');
+    		var dept = document.getElementsByClassName('dept');
+    		var deptName = document.getElementById('filterByDeptName').value;
+
+    		for(var i=0;i<data.length;i++){
+    			if(deptName == 'none'){
+    				data[i].style.display = '';
+    			}else{
+    				if(dept[i].innerHTML != deptName){
+    					data[i].style.display = 'none';
+    				}else{
+    					data[i].style.display = '';
+    				}
+    			}
+    		}
+    	}
+    	function search(){
+    		var data = document.getElementsByClassName('data');
+    		var search = document.getElementById('search').value;
+    		var subject = document.getElementsByClassName('subject');
+    		for(var i=0;i<subject.length;i++){
+    			if(subject[i].innerHTML.indexOf(search) != -1){
+    				data[i].style.display = '';
+    			}else{
+    				data[i].style.display = 'none';
+    			}
+    		}
+    	}
+    </script>
 </head>
 <body>
 	<a href="/auth/login">Login</a>
-	<table>
-		<tr><th>Complaint ID</th><th>Complaint Subject</th><th>Department</th><th>Date</th></tr>
-		<% for(var i = 0;i<result.length;i++){%>
-		<tr><td><a href="/complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td><td><%=result[i].complaint_subject%></td><td><%=result[i].dept_name%></td><td><%=result[i].date%></td></tr>
-		<%}%>
-	</table>
-
+	<h1>Complaint Management System</h1>
+	<%if (typeof result != 'undefined'){%>
+		Filter By Department:  
+		<select onchange="filterByDept()" id='filterByDeptName'>
+            <option value="none">No Filter</option>			
+			<option value='academic'>Academic</option>
+			<option value='sport'>Sports</option>
+			<option value='cafeteria'>Cafeteria</option>
+		</select>
+		<br/><br/>
+		Search By Subject:
+		<input type="text" id='search' onkeyup="search()" />
+		<br/><br/>
+		<table>
+			<tr><th>ID</th><th>Subject</th><th>Department</th><th>Date</th></tr>
+			<% for(var i = 0;i<result.length;i++){%>
+			<tr class="data"><td><a href="/complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td><td class="subject"><%=result[i].complaint_subject%></td><td class="dept"><%=result[i].dept_name%></td><td><%=String(result[i].date).slice(0,15)%></td></tr>
+			<%}%>
+		</table>
+	<%}else{%>
+		<p>Data Not Found</p>
+	<%}%>
 </body>
 </html>
