@@ -101,7 +101,7 @@ router.post('/complaint',(req,res)=>{
 router.get('/new_complaint',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.studentKey){
-			res.render('new_complaint.ejs',{studentId:req.session.id});
+			res.render('new_complaint.ejs',{id:req.session.id,role:'student'});
 		}else{
 			res.redirect('../auth/logout');
 		}

@@ -15,8 +15,14 @@
 	<%if(role == 'general'){%>
 		<a href="/">Back to Home</a>
 	<%}%>
-	<%if(role == 'student'){%>
+	<%if(role == 'student' || role == 'secy'){%>
 		<a href="../home">Back to Home</a> 
+	<%}%>
+	<%if(role == 'secy'){%>
+		<%if(result[0].admin_id == null){%>
+			<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
+			<a href="<%=forwardLink%>">Forward it</a>
+		<%}%>
 	<%}%>
 	<%if(typeof result != 'undefined'){%>
 		<p>Complaint Id: <%=result[0].complaint_id%></p>
@@ -38,7 +44,7 @@
 			<% }%>
 		<%}%>
 	<%}%>
-	<%if(role == 'student'){%>
+	<%if(role == 'student' || role == 'secy'){%>
 		<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
 		<a href="<%=deleteLink%>">Delete Complaint</a>
 		<form method="post">

@@ -13,7 +13,12 @@
 <body onload="setDate()">
     <a href="./home">Home</a>
     <form method="post">
-        <p>Student ID: <input type="text" name="student_id" value='<%=studentId%>' readonly></p>
+        <%if(role=='student'){%>
+            <p>Student ID: <input type="text" name="student_id" value='<%=id%>' readonly></p>
+        <%}%>
+        <%if(role=='secy'){%>
+            <p>Secy ID: <input type="text" name="secy_id" value='<%=id%>' readonly></p>
+        <%}%>
         <p>
             Related to:
             <select name="dept_id" required>
