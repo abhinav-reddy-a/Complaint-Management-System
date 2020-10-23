@@ -9,14 +9,14 @@ router.get('/home',(req,res)=>{
 			var secyId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
-						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 0;"
+						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 0 order by date desc;"
 			db.query(query, function (err, result, fields) {
 				if (err){
 					console.log(err);
 					res.send({success:false,message:'database error',err:err});		
 				}else{
 					console.log(result);
-					res.render('student_home.ejs',{result:result});	
+					res.render('home.ejs',{result:result,name:req.user.name});	
 				}
 			});
 		}else{
@@ -33,14 +33,14 @@ router.get('/history',(req,res)=>{
 			var secyId = req.session.id;
 			var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 						FROM complaint_list INNER JOIN department_list \
-						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 1;"
+						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 1 order by date desc;"
 			db.query(query, function (err, result, fields) {
 				if (err){
 					console.log(err);
 					res.send({success:false,message:'database error',err:err});		
 				}else{
 					console.log(result);
-					res.render('secy_history.ejs',{result:result});	
+					res.render('history.ejs',{result:result,name:req.user.name});	
 				}
 			});
 		}else{
@@ -56,7 +56,8 @@ router.get('/complaint',(req,res)=>{
 		if(req.session.user == keys.secyKey){
 			var id = req.query.id;
 			var query = 'SELECT complaint_list.complaint_id,complaint_list.dept_id,complaint_list.admin_id,complaint_subject,complaint_text,complaint_list.date,dept_name,reply_text,reply_list.date,from_to \
-						 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+') \
+						 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+'\
+						 and secy_id = '+req.session.id+') \
 						 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
 			db.query(query, function (err, result, fields) {
 				if (err){
@@ -64,7 +65,7 @@ router.get('/complaint',(req,res)=>{
 					res.send({success:false,message:'database error',err:err});		
 				}else{
 					console.log(result);
-				    res.render('complaint.ejs',{result:result,role:'secy'});
+				    res.render('complaint.ejs',{result:result,role:'secy',name:req.user.name});
 				}
 			});
 		}else{
@@ -100,7 +101,7 @@ router.post('/complaint',(req,res)=>{
 router.get('/new_complaint',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.secyKey){
-			res.render('new_complaint.ejs',{id:req.session.id,role:'secy'});
+			res.render('new_complaint.ejs',{id:req.session.id,role:'secy',name:req.user.name});
 		}else{
 			res.redirect('../auth/logout');
 		}

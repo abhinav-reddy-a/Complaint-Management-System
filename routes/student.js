@@ -14,10 +14,9 @@ router.get('/home',(req,res)=>{
 				if (err){
 					console.log(err);
 					res.send({success:false,message:'database error',err:err});
-				}
-				else{
+				}else{
 					console.log(result);
-					res.render('student_home.ejs',{result:result,name:req.user.name});	
+					res.render('home.ejs',{result:result,name:req.user.name});	
 				}
 			});
 		}else{
@@ -41,7 +40,7 @@ router.get('/history',(req,res)=>{
 					res.send({success:false,message:'database error',err:err});
 				}else{
 					console.log(result);
-					res.render('student_history.ejs',{result:result,name:req.user.name});	
+					res.render('history.ejs',{result:result,name:req.user.name});	
 				}
 			});
 		}else{

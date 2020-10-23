@@ -32,15 +32,13 @@
                 <th>Department</th>
                 <th>Date</th>
             </tr>
-            <%if(typeof result[0] != 'undefined'){%>
-                <% for(var i = 0;i<result.length;i++){%>
-                    <tr class="data">
-                        <td><a href="./complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td>
-                        <td class='subject'><%=result[i].complaint_subject%></td>
-                        <td class="dept"><%=result[i].dept_name%></td>
-                        <td><%=String(result[i].date).slice(0,15)%></td>
-                    </tr>
-                <%}%>
+            <% for(var i = 0;i<result.length;i++){%>
+                <tr class="data">
+                    <td><a href="./complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td>
+                    <td class='subject'><%=result[i].complaint_subject%></td>
+                    <td class="dept"><%=result[i].dept_name%></td>
+                    <td><%=String(result[i].date).slice(0,15)%></td>
+                </tr>
             <%}%>
         </table>
     <%}else{%>
