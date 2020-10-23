@@ -11,9 +11,14 @@ router.get('/home',(req,res)=>{
 						FROM complaint_list INNER JOIN department_list \
 						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0;"
 			db.query(query, function (err, result, fields) {
-				if (err) throw err;
-				console.log(result);
-				res.render('student_home.ejs',{result:result});
+				if (err){
+					console.log(err);
+					res.send({success:false,message:'database error',err:err});
+				}
+				else{
+					console.log(result);
+					res.render('student_home.ejs',{result:result});	
+				}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -31,9 +36,13 @@ router.get('/history',(req,res)=>{
 						FROM complaint_list INNER JOIN department_list \
 						ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1;"
 			db.query(query, function (err, result, fields) {
-				if (err) throw err;
-				console.log(result);
-				res.render('student_history.ejs',{result:result});
+				if (err){
+					console.log(err);
+					res.send({success:false,message:'database error',err:err});
+				}else{
+					console.log(result);
+					res.render('student_history.ejs',{result:result});	
+				}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -51,9 +60,13 @@ router.get('/complaint',(req,res)=>{
 						 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+') \
 						 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
 			db.query(query, function (err, result, fields) {
-			if (err) throw err;
-			    console.log(result);
+			if (err){
+				console.log(err);
+				res.send({success:false,message:'database error',err:err});
+			}else{
+				console.log(result);
 			    res.render('complaint.ejs',{result:result,role:'student'});
+			}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -74,9 +87,13 @@ router.post('/complaint',(req,res)=>{
 	}
 	console.log(query);
 	db.query(query,post,(err,result)=> {
-		if(err) console.log(err);
-		console.log(result);
-		res.redirect('/student/home');
+		if(err){
+			console.log(err);
+			res.send({success:false,message:'database error',err:err});
+		}else{
+			console.log(result);
+			res.redirect('/student/home');	
+		}
 	})
 
 })
@@ -129,9 +146,13 @@ router.get('/delete',(req,res)=>{
 			var id = req.query.id;
 			var query = 'DELETE FROM complaint_list where complaint_id = '+id+' and student_id = '+req.session.id;
 			db.query(query, function (err, result, fields) {
-			if (err) throw err;
-			    console.log(result);
+			if (err){
+				console.log(err);
+				res.send({success:false,message:'database error',err:err});	
+			}else{
+				console.log(result);
 			    res.redirect('/student/home');
+			}
 			});
 		}else{
 			res.redirect('../auth/logout');
