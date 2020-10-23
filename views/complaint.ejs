@@ -20,9 +20,9 @@
 	<%if(role == 'student' || role == 'secy'){%>
 		<nav>
 	        <a href="../auth/logout">LogOut</a><br/>
-	        <a href="./home">Home</a><br/>
-	        <a href="./history">History</a><br/>
-	        <a href="./new_complaint">New Complaint</a>
+	        <a href="../home">Home</a><br/>
+	        <a href="../history">History</a><br/>
+	        <a href="../new_complaint">New Complaint</a>
 	    </nav>
 	<%}%>
 	<%if(typeof result[0] != 'undefined'){%>
@@ -40,15 +40,15 @@
 		<%if(result[0].from_to != null){%>	
 			<% for(var i=0;i<result.length;i++ ){ %>
 			   	<p>Date: <%=String(result[i].date).slice(0,15)%></p>
-				<% 	if(result[i].from_to[0]=='S'){%>
+				<%if(result[i].from_to[0]=='S'){%>
 					<p>Secy: <%=result[i].reply_text%></p>
-				<% 	}else if(result[i].from_to[0]=='T'){%>
+				<%}else if(result[i].from_to[0]=='T'){%>
 					<p>Student: <%=result[i].reply_text%></p>
-				<% 	}else{	%>
+				<%}else{	%>
 					<p>Admin: <%=result[i].reply_text%></p>
-				<% 	}%>
+				<%}%>
 				<br/>
-			<% }%>
+			<%}%>
 		<%}%>
 		<%if(role == 'student' || role == 'secy'){%>
 			<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>

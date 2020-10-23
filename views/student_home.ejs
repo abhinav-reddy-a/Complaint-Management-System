@@ -12,7 +12,7 @@
         <a href="./history">History</a><br/>
         <a href="./new_complaint">New Complaint</a>
     </nav>
-    <%if (typeof result != 'undefined'){%>
+    <%if (typeof result[0] != 'undefined'){%>
         <br/>Filter By Department:  
         <select onchange="filterByDept()" id='filterByDeptName'>
             <option value="none">No Filter</option>     
