@@ -17,7 +17,7 @@ router.get('/home',(req,res)=>{
 				}
 				else{
 					console.log(result);
-					res.render('student_home.ejs',{result:result});	
+					res.render('student_home.ejs',{result:result,name:req.user.name});	
 				}
 			});
 		}else{
@@ -41,7 +41,7 @@ router.get('/history',(req,res)=>{
 					res.send({success:false,message:'database error',err:err});
 				}else{
 					console.log(result);
-					res.render('student_history.ejs',{result:result});	
+					res.render('student_history.ejs',{result:result,name:req.user.name});	
 				}
 			});
 		}else{
@@ -66,7 +66,7 @@ router.get('/complaint',(req,res)=>{
 				res.send({success:false,message:'database error',err:err});
 			}else{
 				console.log(result);
-			    res.render('complaint.ejs',{result:result,role:'student'});
+			    res.render('complaint.ejs',{result:result,role:'student',name:req.user.name});
 			}
 			});
 		}else{
@@ -102,7 +102,7 @@ router.post('/complaint',(req,res)=>{
 router.get('/new_complaint',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.studentKey){
-			res.render('new_complaint.ejs',{id:req.session.id,role:'student'});
+			res.render('new_complaint.ejs',{id:req.session.id,role:'student',name:req.user.name});
 		}else{
 			res.redirect('../auth/logout');
 		}
