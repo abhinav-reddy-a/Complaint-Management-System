@@ -51,7 +51,7 @@
 				<br/>
 			<%}%>
 		<%}%>
-		<%if(role == 'student' || role == 'secy'){%>
+		<%if((role == 'student' || role == 'secy') && result[0].resolved == 0){%>
 			<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
 			<a href="<%=deleteLink%>">Delete Complaint</a>
 			<form method="post">

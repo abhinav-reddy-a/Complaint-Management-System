@@ -56,7 +56,7 @@ router.get('/complaint',(req,res)=>{
 	if(typeof req.user!='undefined'){
 		if(req.session.user == keys.studentKey){
 			var id = req.query.id;
-			var query = 'SELECT complaint_list.complaint_id,complaint_subject,complaint_text,complaint_list.date,dept_name,reply_text,reply_list.date,from_to \
+			var query = 'SELECT complaint_list.complaint_id,complaint_subject,complaint_text,complaint_list.date,dept_name,reply_text,reply_list.date,from_to,resolved \
 						 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+'\
 						 and student_id = '+req.session.id+') \
 						 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
