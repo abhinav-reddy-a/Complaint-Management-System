@@ -11,9 +11,13 @@ router.get('/home',(req,res)=>{
 						FROM complaint_list INNER JOIN department_list \
 						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 0;"
 			db.query(query, function (err, result, fields) {
-				if (err) throw err;
-				console.log(result);
-				res.render('secy_home.ejs',{result:result});
+				if (err){
+					console.log(err);
+					res.send({success:false,message:'database error',err:err});		
+				}else{
+					console.log(result);
+					res.render('student_home.ejs',{result:result});	
+				}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -31,9 +35,13 @@ router.get('/history',(req,res)=>{
 						FROM complaint_list INNER JOIN department_list \
 						ON department_list.dept_id = complaint_list.dept_id and secy_id = "+secyId+" and resolved = 1;"
 			db.query(query, function (err, result, fields) {
-				if (err) throw err;
-				console.log(result);
-				res.render('secy_history.ejs',{result:result});
+				if (err){
+					console.log(err);
+					res.send({success:false,message:'database error',err:err});		
+				}else{
+					console.log(result);
+					res.render('secy_history.ejs',{result:result});	
+				}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -51,9 +59,13 @@ router.get('/complaint',(req,res)=>{
 						 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+') \
 						 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
 			db.query(query, function (err, result, fields) {
-			if (err) throw err;
-			    console.log(result);
+			if (err){
+				console.log(err);
+				res.send({success:false,message:'database error',err:err});		
+			}else{
+				console.log(result);
 			    res.render('complaint.ejs',{result:result,role:'secy'});
+			}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -74,9 +86,13 @@ router.post('/complaint',(req,res)=>{
 	}
 	console.log(query);
 	db.query(query,post,(err,result)=> {
-		if(err) console.log(err);
-		console.log(result);
-		res.redirect('/secy/home');
+		if(err){
+			console.log(err);
+			res.send({success:false,message:'database error',err:err});		
+		}else{
+			console.log(result);
+			res.redirect('/secy/home');	
+		}
 	})
 
 })
@@ -111,9 +127,13 @@ router.post('/new_complaint',(req,res) => { //post method for submitting a compl
 			}
 			console.log(query);
 			db.query(query,post,(err,result)=> {
-				if(err) console.log(err);
-				console.log(result);
-				res.redirect('/secy/home');
+				if(err){
+					console.log(err);
+					res.send({success:false,message:'database error',err:err});				
+				}else{
+					console.log(result);
+					res.redirect('/secy/home');	
+				}
 			})
 		}else{
 			res.redirect('../auth/logout');
