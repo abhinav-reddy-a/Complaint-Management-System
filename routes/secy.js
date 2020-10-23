@@ -59,13 +59,13 @@ router.get('/complaint',(req,res)=>{
 						 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+') \
 						 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
 			db.query(query, function (err, result, fields) {
-			if (err){
-				console.log(err);
-				res.send({success:false,message:'database error',err:err});		
-			}else{
-				console.log(result);
-			    res.render('complaint.ejs',{result:result,role:'secy'});
-			}
+				if (err){
+					console.log(err);
+					res.send({success:false,message:'database error',err:err});		
+				}else{
+					console.log(result);
+				    res.render('complaint.ejs',{result:result,role:'secy'});
+				}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -149,9 +149,13 @@ router.get('/delete',(req,res)=>{
 			var id = req.query.id;
 			var query = 'DELETE FROM complaint_list where complaint_id = '+id+' and secy_id = '+req.session.id;
 			db.query(query, function (err, result, fields) {
-			if (err) throw err;
-			    console.log(result);
-			    res.redirect('/secy/home');
+				if(err){
+						console.log(err);
+						res.send({success:false,message:'database error',err:err});				
+				}else{
+				    console.log(result);
+				    res.redirect('/secy/home');
+				}
 			});
 		}else{
 			res.redirect('../auth/logout');
@@ -167,9 +171,13 @@ router.get('/forward',(req,res)=>{
 			var id = req.query.id;
 			var query = 'UPDATE complaint_list SET admin_id='+req.query.did+' WHERE complaint_id='+req.query.id;
 			db.query(query, function (err, result, fields) {
-			if (err) throw err;
-			    console.log(result);
-			    res.redirect('/secy/home');
+				if(err){
+							console.log(err);
+							res.send({success:false,message:'database error',err:err});				
+				}else{
+				    console.log(result);
+				    res.redirect('/secy/home');
+				}
 			});
 		}else{
 			res.redirect('../auth/logout');
