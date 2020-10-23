@@ -13,18 +13,25 @@
 </head>
 <body onload="setDate()">
 	<%if(role == 'general'){%>
-		<a href="/">Back to Home</a>
+		<nav>
+			<a href="/">Back to Home</a>
+		</nav>
 	<%}%>
 	<%if(role == 'student' || role == 'secy'){%>
-		<a href="../home">Back to Home</a> 
+		<nav>
+	        <a href="../auth/logout">LogOut</a><br/>
+	        <a href="./home">Home</a><br/>
+	        <a href="./history">History</a><br/>
+	        <a href="./new_complaint">New Complaint</a>
+	    </nav>
 	<%}%>
-	<%if(role == 'secy'){%>
-		<%if(result[0].admin_id == null){%>
-			<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
-			<a href="<%=forwardLink%>">Forward it</a>
+	<%if(typeof result[0] != 'undefined'){%>
+		<%if(role == 'secy'){%>
+			<%if(result[0].admin_id == null){%>
+				<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
+				<a href="<%=forwardLink%>">Forward it</a>
+			<%}%>
 		<%}%>
-	<%}%>
-	<%if(typeof result != 'undefined'){%>
 		<p>Complaint Id: <%=result[0].complaint_id%></p>
 		<p>Complaint Subject: <%=result[0].complaint_subject%></p>
 		<p>Complaint Text: <%=result[0].complaint_text%></p>
@@ -43,15 +50,17 @@
 				<br/>
 			<% }%>
 		<%}%>
-	<%}%>
-	<%if(role == 'student' || role == 'secy'){%>
-		<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
-		<a href="<%=deleteLink%>">Delete Complaint</a>
-		<form method="post">
-			<p>Reply to this: </p><p><textarea name="reply_text" rows="4" cols="50"></textarea></p>
-			<p>Date: <input type="text" name="date" readonly id="date"></p>
-			<button type="Submit">Send</button>
-		</form>
+		<%if(role == 'student' || role == 'secy'){%>
+			<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
+			<a href="<%=deleteLink%>">Delete Complaint</a>
+			<form method="post">
+				<p>Reply to this: </p><p><textarea name="reply_text" rows="4" cols="50"></textarea></p>
+				<p>Date: <input type="text" name="date" readonly id="date"></p>
+				<button type="Submit">Send</button>
+			</form>
+		<%}%>
+	<%}else{%>
+		<p>Data Not Found</p>
 	<%}%>
 </body>
 </html>

@@ -3,17 +3,45 @@
 <head>
     <meta charset="utf-8">
     <title>Complaint Management System</title>
+    <script src="/js/index.js"></script>
 </head>
 <body>
-  <a href="./home">Home</a>
-  <table>
-    <tr><th>Complaint ID</th><th>Complaint Subject</th><th>Department</th><th>Date</th></tr>
-    <%if(typeof result != 'undefined'){%>
-	    <% for(var i = 0;i<result.length;i++){%>
-	    <tr><td><a href="./complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td><td><%=result[i].complaint_subject%></td><td><%=result[i].dept_name%></td><td><%=String(result[i].date).slice(0,15)%></td></tr>
-	    <%}%>
-	<%}%>
-  </table>
-
+    <nav>
+        <a href="../auth/logout">LogOut</a><br/>
+        <a href="./home">Home</a><br/>
+        <a href="./history">History</a><br/>
+        <a href="./new_complaint">New Complaint</a>
+    </nav>
+    <%if (typeof result[0] != 'undefined'){%>
+        <br/>Filter By Department:  
+        <select onchange="filterByDept()" id='filterByDeptName'>
+            <option value="none">No Filter</option>     
+            <option value='academic'>Academic</option>
+            <option value='sport'>Sports</option>
+            <option value='cafeteria'>Cafeteria</option>
+        </select>
+        <br/><br/>
+        Search By Subject:
+        <input type="text" id='search' onkeyup="search()" />
+        <br/><br/>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Subject</th>
+                <th>Department</th>
+                <th>Date</th>
+            </tr>
+            <% for(var i = 0;i<result.length;i++){%>
+        	    <tr class="data">
+                    <td><a href="./complaint/?id=<%=result[i].complaint_id%>"><%=result[i].complaint_id%></a></td>
+                    <td class="subject"><%=result[i].complaint_subject%></td>
+                    <td class="dept"><%=result[i].dept_name%></td>
+                    <td><%=String(result[i].date).slice(0,15)%></td>
+                </tr>
+        	<%}%>
+        </table>
+    <%}else{%>
+        <p>Data Not Found</p>
+    <%}%>
 </body>
 </html>

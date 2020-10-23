@@ -11,7 +11,12 @@
     </script>
 </head>
 <body onload="setDate()">
-    <a href="./home">Home</a>
+    <nav>
+        <a href="../auth/logout">LogOut</a><br/>
+        <a href="./home">Home</a><br/>
+        <a href="./history">History</a><br/>
+        <a href="./new_complaint">New Complaint</a>
+    </nav>
     <form method="post">
         <%if(role=='student'){%>
             <p>Student ID: <input type="text" name="student_id" value='<%=id%>' readonly></p>
