@@ -30,7 +30,7 @@
 	<%}%>
 	<%if(typeof result[0] != 'undefined'){%>
 		<%if(role == 'secy'){%>
-			<%if(result[0].admin_id == null){%>
+			<%if(result[0].admin_id == null && result[0].resolved == 0){%>
 				<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
 				<a href="<%=forwardLink%>">Forward it</a>
 			<%}%>
