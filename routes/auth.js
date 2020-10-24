@@ -29,7 +29,7 @@ module.exports = router;
 //student, starts with cse+no...,ee,me,ce,mems,phd,msc,mscphd,mt,mtech,mtphd
 
 function checkEmail(email,req,res){
-	var query = 'select secy_id from secy_list where secy_name = "'+email+'";'
+	var query = 'select secy_id from secy_list where secy_email = "'+email+'";'
 	db.query(query, function (err, result, fields) {
 		if (err){
 			console.log(err);
@@ -43,7 +43,7 @@ function checkEmail(email,req,res){
 		    	// console.log(req.session.user);
 		    	res.redirect('/secy/home');
 		    }else{
-		    	query = 'select admin_id from admin_list where admin_name = "'+email+'";'
+		    	query = 'select admin_id from admin_list where admin_email = "'+email+'";'
 				db.query(query, function (err1, result1, fields1) {
 				if (err1) throw err1;
 				    console.log(result1);
