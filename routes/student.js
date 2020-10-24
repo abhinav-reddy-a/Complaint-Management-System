@@ -72,7 +72,8 @@ router.post('/complaint',(req,res)=>{
 	db.query(query,post,(err,result)=> {
 		checkError(err,res);
 		console.log(result);
-		res.redirect('/student/home');	
+		var link = '/student/complaint/?id='+req.query.id;
+		res.redirect(link);	
 	})
 })
 

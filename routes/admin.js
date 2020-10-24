@@ -19,17 +19,21 @@ function checkError(err,res){
 	}
 }
 
+function sendQuery(Query,req,res,fileName){
+	db.query(Query, function (err, result, fields) {
+		checkError(err,res);
+		console.log(result);
+		res.render(fileName,{result:result,name:req.user.name,role:'admin'});	
+	});	
+}
+
 router.get('/home',(req,res)=>{
 	checkLogin(req,res);
 	var adminId = req.session.id;
 	var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 				FROM complaint_list INNER JOIN department_list \
 				ON department_list.dept_id = complaint_list.dept_id and admin_id = "+adminId+" and resolved = 0 order by date desc;"
-	db.query(query, function (err, result, fields) {
-		checkError(err,res);
-		console.log(result);
-		res.render('home.ejs',{result:result,name:req.user.name,role:'admin'});	
-	});	
+	sendQuery(query,req,res,'home.ejs');
 })
 
 router.get('/history',(req,res)=>{
@@ -38,11 +42,7 @@ router.get('/history',(req,res)=>{
 	var query = "SELECT complaint_id,complaint_subject,date,dept_name \
 				FROM complaint_list INNER JOIN department_list \
 				ON department_list.dept_id = complaint_list.dept_id and admin_id = "+adminId+" and resolved = 1 order by date desc;"
-	db.query(query, function (err, result, fields) {
-		checkError(err,res);
-		console.log(result);
-		res.render('history.ejs',{result:result,name:req.user.name,role:'admin'});	
-	});	
+	sendQuery(query,req,res,'history.ejs');
 })
 
 router.get('/complaint',(req,res)=>{
@@ -53,11 +53,7 @@ router.get('/complaint',(req,res)=>{
 				FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+'\
 				and admin_id = '+req.session.id+') \
 				LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
-	db.query(query, function (err, result, fields) {
-		checkError(err,res);
-		console.log(result);
-		res.render('complaint.ejs',{result:result,role:'admin',name:req.user.name});
-	});	
+	sendQuery(query,req,res,'complaint.ejs');	
 })
 
 router.post('/complaint',(req,res)=>{
@@ -72,7 +68,8 @@ router.post('/complaint',(req,res)=>{
 	db.query(query,post,(err,result)=> {
 		checkError(err,res);
 		console.log(result);
-		res.redirect('/admin/home');	
+		var link = '/admin/complaint/?id='+req.query.id;
+		res.redirect(link);	
 	})
 })
 
