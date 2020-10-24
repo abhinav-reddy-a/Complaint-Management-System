@@ -33,7 +33,7 @@ var port = process.env.PORT || 3000;
 var indexRouter = require('./routes/index'); //routes defined in other files
 var studentRouter=require('./routes/student');
 var secyRouter = require('./routes/secy');
-//var adminRouter = require('./routes/admin');
+var adminRouter = require('./routes/admin');
 var authRouter = require('./routes/auth');
 
 
@@ -59,7 +59,7 @@ app.use('/student',studentRouter); // route for studentpage
 
 app.use('/secy',secyRouter); // route for secypage
 
-// app.use('/admin',adminRouter); // route for adminpage
+app.use('/admin',adminRouter); // route for adminpage
 
 app.use('/auth',authRouter); // route for authentication
 

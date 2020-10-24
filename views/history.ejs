@@ -11,7 +11,9 @@
         <a href="../auth/logout">LogOut</a><br/>
         <a href="./home">Home</a><br/>
         <a href="./history">History</a><br/>
-        <a href="./new_complaint">New Complaint</a>
+        <%if(role != 'admin'){%>
+            <a href="./new_complaint">New Complaint</a>
+        <%}%>
     </nav>
     <%if (typeof result[0] != 'undefined'){%>
         <br/>Filter By Department:  

@@ -28,7 +28,7 @@ router.get('/home',(req,res)=>{
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
 		console.log(result);
-		res.render('home.ejs',{result:result,name:req.user.name});
+		res.render('home.ejs',{result:result,name:req.user.name,role:'student'});
 	});	
 })
 
@@ -41,7 +41,7 @@ router.get('/history',(req,res)=>{
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
 		console.log(result);
-		res.render('history.ejs',{result:result,name:req.user.name});	
+		res.render('history.ejs',{result:result,name:req.user.name,role:'student'});	
 	});	
 })
 
