@@ -24,7 +24,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(keys.mongoURI,()=>{
+mongoose.connect(keys.mongoURI,{useNewUrlParser: true},()=>{
 	console.log('connected to mongodb');
 })
 
