@@ -30,7 +30,8 @@ mongoose.connect(keys.mongoURI,{useNewUrlParser: true},()=>{
 
 var port = process.env.PORT || 3000;
 
-var indexRouter = require('./routes/index'); //routes defined in other files
+//routes defined in other files
+var indexRouter = require('./routes/index'); 
 var studentRouter=require('./routes/student');
 var secyRouter = require('./routes/secy');
 var adminRouter = require('./routes/admin');
