@@ -47,13 +47,17 @@
 					<p>Secy: <%=result[i].reply_text%></p>
 				<%}else if(result[i].from_to[0]=='T'){%>
 					<p>Student: <%=result[i].reply_text%></p>
-				<%}else{	%>
+				<%}else{%>
 					<p>Admin: <%=result[i].reply_text%></p>
 				<%}%>
 				<br/>
 			<%}%>
 		<%}%>
 		<%if(result[0].resolved == 0){%>
+			<%if((role == 'secy' && result[0].student_id != null) || role == 'admin'){%>
+				<%var resolveLink = '../resolve/?id='+result[0].complaint_id;%>
+				<a href="<%=resolveLink%>">Resolved</a>
+			<%}%>
 			<%if((role == 'student') || (role == 'secy' && result[0].student_id == null)){%>
 				<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
 				<a href="<%=deleteLink%>">Delete Complaint</a>

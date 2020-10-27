@@ -112,10 +112,21 @@ router.get('/delete',(req,res)=>{
 	});	
 })
 
+router.get('/resolve',(req,res)=>{
+	checkLogin(req,res);
+	var id = req.query.id;
+	var query = 'UPDATE complaint_list SET resolved = 1 WHERE complaint_id='+req.query.id+' and secy_id = '+req.session.id;
+	db.query(query, function (err, result, fields) {
+		checkError(err,res);
+		console.log(result);
+		res.redirect('/secy/home');
+	});	
+})
+
 router.get('/forward',(req,res)=>{
 	checkLogin(req,res);
 	var id = req.query.id;
-	var query = 'UPDATE complaint_list SET admin_id='+req.query.did+' WHERE complaint_id='+req.query.id;
+	var query = 'UPDATE complaint_list SET admin_id='+req.query.did+' WHERE complaint_id='+req.query.id+' and secy_id = '+req.session.id;
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
 		console.log(result);

@@ -73,6 +73,17 @@ router.post('/complaint',(req,res)=>{
 	})
 })
 
+router.get('/resolve',(req,res)=>{
+	checkLogin(req,res);
+	var id = req.query.id;
+	var query = 'UPDATE complaint_list SET resolved = 1 WHERE complaint_id='+req.query.id+' and admin_id = '+req.session.id;
+	db.query(query, function (err, result, fields) {
+		checkError(err,res);
+		console.log(result);
+		res.redirect('/admin/home');
+	});	
+})
+
 // router.get('/new_complaint',(req,res)=>{
 // 	checkLogin(req,res)
 // 	res.render('new_complaint.ejs',{id:req.session.id,role:'admin',name:req.user.name});	
