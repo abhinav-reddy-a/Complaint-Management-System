@@ -61,6 +61,7 @@ router.get('/complaint',(req,res)=>{
 })
 
 router.post('/complaint',(req,res)=>{
+	checkLogin(req,res);
 	var query = 'INSERT INTO reply_list SET ?'
 	var post = {
 		reply_text : req.body.reply_text,
