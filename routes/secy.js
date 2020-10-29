@@ -48,7 +48,8 @@ router.get('/history',(req,res)=>{
 router.get('/complaint',(req,res)=>{
 	checkLogin(req,res);
 	var id = req.query.id;
-	var query = 'SELECT complaint_list.complaint_id,complaint_list.student_id,complaint_list.dept_id,complaint_list.admin_id,complaint_subject,complaint_text,complaint_list.date,\
+	var query = 'SELECT complaint_list.complaint_id,complaint_list.student_id,complaint_list.dept_id,complaint_list.admin_id,complaint_subject,\
+				complaint_list.stars,complaint_list.comments,complaint_text,complaint_list.date,\
 				dept_name,reply_text,reply_list.date,from_to, resolved \
 				FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+'\
 				and secy_id = '+req.session.id+') \
@@ -58,12 +59,22 @@ router.get('/complaint',(req,res)=>{
 
 router.post('/complaint',(req,res)=>{
 	checkLogin(req,res);
-	var query = 'INSERT INTO reply_list SET ?'
-	var post = {
-		reply_text : req.body.reply_text,
-		from_to : 'S',
-		complaint_id : req.query.id,
-		date : req.body.date
+	var query = '';
+	var post = {};
+	if(typeof req.body.comments == 'undefined'){
+		query = 'INSERT INTO reply_list SET ?'
+		post = {
+			reply_text : req.body.reply_text,
+			from_to : 'S',
+			complaint_id : req.query.id,
+			date : req.body.date
+		}
+	}else{
+		query = 'UPDATE complaint_list SET ? WHERE complaint_id = '+req.query.id;
+		post = {
+			stars : req.body.stars,
+			comments : req.body.comments
+		}
 	}
 	console.log(query);
 	db.query(query,post,(err,result)=> {

@@ -37,7 +37,7 @@ function checkError(err,res){
 //student, starts with cse+no...,ee,me,ce,mems,phd,msc,mscphd,mt,mtech,mtphd
 
 function checkEmail(email,req,res){
-	var query = 'select secy_id from secy_list where secy_name = "'+email+'";'
+	var query = 'select secy_id from secy_list where secy_email = "'+email+'";'
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
 		console.log(query);
@@ -48,7 +48,7 @@ function checkEmail(email,req,res){
 	    	// console.log(req.session.user);
 			res.redirect('/secy/home');
 	    }else{
-	    	query = 'select admin_id from admin_list where admin_name = "'+email+'";'
+	    	query = 'select admin_id from admin_list where admin_email = "'+email+'";'
 			db.query(query, function (err1, result1, fields1) {
 				checkError(err1,res);
 			    console.log(result1);
