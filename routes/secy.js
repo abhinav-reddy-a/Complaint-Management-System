@@ -57,6 +57,7 @@ router.get('/complaint',(req,res)=>{
 })
 
 router.post('/complaint',(req,res)=>{
+	checkLogin(req,res);
 	var query = 'INSERT INTO reply_list SET ?'
 	var post = {
 		reply_text : req.body.reply_text,
@@ -74,7 +75,7 @@ router.post('/complaint',(req,res)=>{
 })
 
 router.get('/new_complaint',(req,res)=>{
-	checkLogin(req,res)
+	checkLogin(req,res);
 	res.render('new_complaint.ejs',{id:req.session.id,role:'secy',name:req.user.name});	
 })
 
