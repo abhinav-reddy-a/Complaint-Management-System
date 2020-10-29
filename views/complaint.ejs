@@ -9,7 +9,31 @@
             var d = new Date();
             date.value = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
         }
+        function changeRating(n){
+	    	var num = Number(n);
+	    	var stars = document.getElementsByClassName('fa');
+	    	document.getElementById('stars').value = num;
+	        for(var i=0;i<5;i++){
+	        	if(i<num)
+	        	stars[i].className = 'fa fa-star checked';
+	            else
+	        	stars[i].className = 'fa fa-star';
+	        }
+	    }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		.checked {
+		  color: orange;
+		}
+		.stars{
+			border: none;
+		    background-color: transparent;
+		}
+		#stars{
+			display: none;
+		}
+	</style>
 </head>
 <body onload="setDate()">
 	<%if(role == 'general'){%>
@@ -67,6 +91,31 @@
 				<p>Date: <input type="text" name="date" readonly id="date"></p>
 				<button type="Submit">Send</button>
 			</form>
+		<%}%>
+		<%if(((result[0].resolved == 1) &&((role == 'student') || (role == 'secy' && result[0].student_id == null)))){%>
+			<%if(result[0].stars == null){%>
+				<button class='stars' onclick='changeRating("1")'><span class="fa fa-star"></span></button>
+				<button class='stars' onclick='changeRating("2")'><span class="fa fa-star"></span></button>
+				<button class='stars' onclick='changeRating("3")'><span class="fa fa-star"></span></button>
+				<button class='stars' onclick='changeRating("4")'><span class="fa fa-star"></span></button>
+				<button class='stars' onclick='changeRating("5")'><span class="fa fa-star"></span></button>
+
+				<form method='post'>
+					<input type="number" name="stars" id='stars' value='0'/>
+					<p>Comments:<br/><textarea rows="10" cols="50" name="comments"></textarea></p>
+					<button type="submit">Submit</button>
+				</form>
+			<%}else{%>
+				<p>Your Review</p>
+				<%for(var i=0;i<5;i++){%>
+					<%if(i<Number(result[0].stars)){%>
+						<span class="fa fa-star checked"></span>
+					<%}else{%>
+						<span class="fa fa-star"></span>
+					<%}%>
+				<%}%>
+				<p>Comments: <%=result[0].comments%></p>
+			<%}%>
 		<%}%>
 	<%}else{%>
 		<p>Data Not Found</p>

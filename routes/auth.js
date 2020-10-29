@@ -48,7 +48,7 @@ function checkEmail(email,req,res){
 	    	// console.log(req.session.user);
 			res.redirect('/secy/home');
 	    }else{
-	    	query = 'select admin_id from admin_list where admin_email = "'+email+'";'
+	    	query = 'select admin_id from admin_list where admin_name = "'+email+'";'
 			db.query(query, function (err1, result1, fields1) {
 				checkError(err1,res);
 			    console.log(result1);
