@@ -45,6 +45,7 @@
 				<th>Name</th>
 				<th>Department</th>
 				<th>Avg Rating</th>
+				<th>Avg Days</th>
 			</tr>
 			<% for(var i = 0;i<result.length;i++){%>
 				<tr class="data">
@@ -65,6 +66,7 @@
 							<span>N/A</span>
 						<%}%>
 					</td>
+					<td><%= result[i].days || 'N/A'%></td>
 				</tr>
 			<%}%>
 		</table>
