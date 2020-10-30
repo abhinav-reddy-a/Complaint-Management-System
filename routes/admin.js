@@ -88,54 +88,13 @@ router.get('/resolve',(req,res)=>{
 	});	
 })
 
-// router.get('/new_complaint',(req,res)=>{
-// 	checkLogin(req,res)
-// 	res.render('new_complaint.ejs',{id:req.session.id,role:'admin',name:req.user.name});	
-// })
-
-// router.post('/new_complaint',(req,res) => { //post method for submitting a complaint the body of request should contain respective methods
-// 	checkLogin(req,res);
-// 	console.log(req.body);
-// 	var query = 'INSERT INTO complaint_list SET ?'
-// 	var post = {
-// 		complaint_subject : req.body.complaint_subject,
-// 		complaint_text : req.body.complaint_text,
-// 		date : req.body.date,
-// 		student_id : req.body.null,
-// 		admin_id : req.body.admin_id,
-// 		secy_id : req.body.secy_id,
-// 		dept_id : req.body.dept_id,
-// 		complaint_id : null,
-// 		resolved : 0
-// 	}
-// 	console.log(query);
-// 	db.query(query,post,(err,result)=> {
-// 		checkError(err,res);
-// 		console.log(result);
-// 		res.redirect('/secy/home');	
-// 	})	
-// })
-
-// router.get('/delete',(req,res)=>{
-// 	checkLogin(req,res);
-// 	var id = req.query.id;
-// 	var query = 'DELETE FROM complaint_list where complaint_id = '+id+' and secy_id = '+req.session.id;
-// 	db.query(query, function (err, result, fields) {
-// 		checkError(err,res);
-// 		console.log(result);
-// 		res.redirect('/secy/home');
-// 	});	
-// })
-
-// router.get('/forward',(req,res)=>{
-// 	checkLogin(req,res);
-// 	var id = req.query.id;
-// 	var query = 'UPDATE complaint_list SET admin_id='+req.query.did+' WHERE complaint_id='+req.query.id;
-// 	db.query(query, function (err, result, fields) {
-// 		checkError(err,res);
-// 		console.log(result);
-// 		res.redirect('/secy/home');
-// 	});	
-// })
+router.get('/info',(req,res)=>{
+	var query = 'SELECT * FROM admin_list';
+	db.query(query,function(err, result, fields){
+		checkError(err,res);
+		console.log(result);
+		res.render('info.ejs',{result: result});
+	})
+})
 
 module.exports = router;

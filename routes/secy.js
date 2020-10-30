@@ -150,4 +150,13 @@ router.get('/forward',(req,res)=>{
 	});	
 })
 
+router.get('/info',(req,res)=>{
+	var query = 'SELECT * FROM secy_list';
+	db.query(query,function(err, result, fields){
+		checkError(err,res);
+		console.log(result);
+		res.render('info.ejs',{result: result});
+	})
+})
+
 module.exports = router;
