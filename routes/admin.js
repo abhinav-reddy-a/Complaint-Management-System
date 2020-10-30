@@ -89,7 +89,10 @@ router.get('/resolve',(req,res)=>{
 })
 
 router.get('/info',(req,res)=>{
-	var query = 'SELECT * FROM admin_list';
+	var query = 'SELECT admin_list.admin_id,admin_name,admin_email,department_list.dept_name,sum(complaint_list.stars)/count(complaint_list.stars) "stars" \
+				 FROM ((admin_list LEFT JOIN department_list on admin_list.dept_id = department_list.dept_id)\
+				 LEFT JOIN complaint_list ON admin_list.admin_id = complaint_list.admin_id and complaint_list.resolved = 1 and complaint_list.stars != "null")\
+				 GROUP BY admin_list.admin_id;';
 	db.query(query,function(err, result, fields){
 		checkError(err,res);
 		console.log(result);
