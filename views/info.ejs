@@ -34,7 +34,7 @@
 		</select>
 		<br/>
 		<br/>
-		Search By Subject:
+		Search By Email:
 		<input type="text" id='search' onkeyup="search()" />
 		<br/>
 		<br/>
@@ -49,10 +49,10 @@
 			<% for(var i = 0;i<result.length;i++){%>
 				<tr class="data">
 					<td><%=result[i].admin_id || result[i].secy_id%></td>
-					<td class="subject"><%=result[i].admin_email || result[i].secy_email%></td>
-					<td class="dept"><%=result[i].admin_name || result[i].secy_name%></td>
+					<td class='subject'><%=result[i].admin_email || result[i].secy_email%></td>
+					<td><%=result[i].admin_name || result[i].secy_name%></td>
 					<td class="dept"><%=result[i].dept_name%></td>
-					<td class="dept">
+					<td>
 						<%if(result[i].stars != null){%>
 							<%for(var j=0;j<5;j++){%>
 								<%if(j<Number(result[i].stars)){%>
