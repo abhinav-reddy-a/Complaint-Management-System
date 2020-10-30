@@ -48,7 +48,7 @@ router.get('/history',(req,res)=>{
 router.get('/complaint',(req,res)=>{
 	checkLogin(req,res);
 	var id = req.query.id;
-	var query = 'SELECT complaint_list.complaint_id,complaint_subject,complaint_text,complaint_list.date,dept_name, \
+	var query = 'SELECT complaint_list.complaint_id,complaint_subject,complaint_text,complaint_list.date "cdate",dept_name, \
 				 complaint_list.stars,complaint_list.comments,reply_text,reply_list.date,from_to,resolved \
 				 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+'\
 				 and student_id = '+req.session.id+') \
