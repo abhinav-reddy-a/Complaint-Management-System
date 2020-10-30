@@ -77,7 +77,10 @@ router.post('/complaint',(req,res)=>{
 router.get('/resolve',(req,res)=>{
 	checkLogin(req,res);
 	var id = req.query.id;
-	var query = 'UPDATE complaint_list SET resolved = 1 WHERE complaint_id='+req.query.id+' and admin_id = '+req.session.id;
+	var d = new Date();
+	//console.log(d.getHours());
+	var date = d.getFullYear()+'-'+String(Number(d.getMonth())+1)+'-'+d.getDate();
+	var query = 'UPDATE complaint_list SET resolved = 1, resolved_date = "'+date+'" WHERE complaint_id='+req.query.id+' and admin_id = '+req.session.id;
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
 		console.log(result);
