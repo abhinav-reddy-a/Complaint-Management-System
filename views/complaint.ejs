@@ -114,6 +114,20 @@
 						<span class="fa fa-star"></span>
 					<%}%>
 				<%}%>
+				<%if(result[0].comments!=''){%>
+					<p>Comments: <%=result[0].comments%></p>
+				<%}%>
+			<%}%>
+		<%}else if((role=='secy')&&(result[0].stars!=null)){%>
+			<p>Review</p>
+			<%for(var i=0;i<5;i++){%>
+				<%if(i<Number(result[0].stars)){%>
+					<span class="fa fa-star checked"></span>
+				<%}else{%>
+					<span class="fa fa-star"></span>
+				<%}%>
+			<%}%>
+			<%if(result[0].comments!=''){%>
 				<p>Comments: <%=result[0].comments%></p>
 			<%}%>
 		<%}%>
