@@ -27,6 +27,15 @@ function sendQuery(Query,req,res,fileName){
 	});	
 }
 
+var date_diff_indays = function(date1, date2) {
+	dt1 = new Date(date1);
+	dt2 = new Date(date2);
+	var Difference_In_Time = dt2.getTime() - dt1.getTime(); 
+  
+	// To calculate the no. of days between two dates 
+	return Difference_In_Time / (1000 * 3600 * 24); 
+}
+
 router.get('/home',(req,res)=>{
 	checkLogin(req,res);
 	var adminId = req.session.id;
@@ -96,6 +105,7 @@ router.get('/info',(req,res)=>{
 	db.query(query,function(err, result, fields){
 		checkError(err,res);
 		console.log(result);
+		console.log(date_diff_indays('04/02/2014', '04/03/2014'));
 		res.render('info.ejs',{result: result});
 	})
 })

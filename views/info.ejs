@@ -4,6 +4,19 @@
     <meta charset="utf-8">
     <title>Complaint Management System</title>
     <script src="/js/index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		.checked {
+		  color: orange;
+		}
+		.stars{
+			border: none;
+		    background-color: transparent;
+		}
+		#stars{
+			display: none;
+		}
+	</style>
 </head>
 <body>
 	<a href="../auth/google">Login With Google</a><br/>
@@ -39,7 +52,19 @@
 					<td class="subject"><%=result[i].admin_email || result[i].secy_email%></td>
 					<td class="dept"><%=result[i].admin_name || result[i].secy_name%></td>
 					<td class="dept"><%=result[i].dept_name%></td>
-					<td class="dept"><%=result[i].stars || "N/A"%></td>
+					<td class="dept">
+						<%if(result[i].stars != null){%>
+							<%for(var j=0;j<5;j++){%>
+								<%if(j<Number(result[i].stars)){%>
+									<span class="fa fa-star checked"></span>
+								<%}else{%>
+									<span class="fa fa-star"></span>
+								<%}%>
+							<%}%>
+						<%}else{%>
+							<span>N/A</span>
+						<%}%>
+					</td>
 				</tr>
 			<%}%>
 		</table>
