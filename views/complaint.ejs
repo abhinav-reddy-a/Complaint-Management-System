@@ -114,7 +114,9 @@
 						<span class="fa fa-star"></span>
 					<%}%>
 				<%}%>
-				<p>Comments: <%=result[0].comments%></p>
+				<%if(result[0].comments!=''){%>
+					<p>Comments: <%=result[0].comments%></p>
+				<%}%>
 			<%}%>
 		<%}%>
 	<%}else{%>
