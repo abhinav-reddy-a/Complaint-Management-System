@@ -89,7 +89,8 @@ router.get('/resolve',(req,res)=>{
 })
 
 router.get('/info',(req,res)=>{
-	var query = 'SELECT * FROM admin_list';
+	var query = 'SELECT admin_id,admin_name,admin_email,department_list.dept_name \
+				 FROM admin_list INNER JOIN department_list where admin_list.dept_id = department_list.dept_id';
 	db.query(query,function(err, result, fields){
 		checkError(err,res);
 		console.log(result);
