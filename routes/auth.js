@@ -1,6 +1,6 @@
 const passport = require('passport');
 var router = require('express').Router();
-var db = require('../db');
+var db = require('../services/db');
 var keys = require('../config/keys');
 
 router.get('/google',

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var db = require('../services/db');
 
 function checkError(err,res){
 	if(err){
