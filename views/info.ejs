@@ -87,19 +87,26 @@
 	<br>
   <div class="container-fluid">
 	<%if (typeof result != 'undefined'){%>
-		<div class="form-group">
-          <label for="filterByDeptName">Filter By Department</label>
-          <select class="form-control" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
-            <option value="none">No Filter</option>			
-			<option value='academic'>Academic</option>
-			<option value='sport'>Sports</option>
-			<option value='cafeteria'>Cafeteria</option>
-          </select>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+				<label for="filterByDeptName">Filter By Department</label>
+				<select class="form-control" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
+					<option value="none">No Filter</option>			
+					<option value='academic'>Academic</option>
+					<option value='sport'>Sports</option>
+					<option value='cafeteria'>Cafeteria</option>
+				</select>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+				<label for="search">Search By Email</label>
+				<input type="text" name="search" class="form-control" id="search" onkeyup="search()" />
+				</div>
+			</div>
 		</div>
-		<div class="form-group">
-          <label for="search">Search By Email</label>
-          <input type="text" name="search" class="form-control" id="search" onkeyup="search()" />
-        </div>
+		
 		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
 			<% for(var i = 0;i<result.length;i++){%>
 				<div class="col mb-4 data">
