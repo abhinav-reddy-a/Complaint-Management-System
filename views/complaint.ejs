@@ -33,8 +33,28 @@
 		#stars{
 			display: none;
 		}
-		body {
-			background-color: #eee !important;
+        body{
+            background-color: #eee !important;
+        }
+        .container-fluid{
+            margin-top: 20px !important;
+		}
+		.card{
+			padding: 0px !important;
+			margin: 5px;
+		}
+		.cards{
+			display: flex;
+			flex-direction: column;
+		}
+		.card-body{
+			margin: 0px !important;
+			padding: 10px !important;
+		}
+		.details{
+			background-color: rgba(255,255,255,0.6);
+			padding: 10px;
+			margin: 10px;
 		}
 	</style> 
 	<meta charset="UTF-8" />
@@ -118,45 +138,78 @@
 		</div>
 	  </nav>
 	  <%}%>
+	  <div class="container-fluid">
 	<%if(typeof result[0] != 'undefined'){%>
+		<%if(result[0].resolved == 0){%>
+			<%if((role == 'secy' && result[0].student_id != null) || role == 'admin'){%>
+				<%var resolveLink = '../resolve/?id='+result[0].complaint_id+'&date='+result[0].cdate;%>
+				<a href="<%=resolveLink%>"><button class=" btn btn-primary">Resolved</button></a>
+			<%}%>
+			<%if((role == 'student') || (role == 'secy' && result[0].student_id == null)){%>
+				<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
+				<a href="<%=deleteLink%>"><button class=" btn btn-primary">Delete Complaint</button></a>
+			<%}%>
+		<%}%>
 		<%if(role == 'secy'){%>
 			<%if(result[0].admin_id == null && result[0].resolved == 0){%>
 				<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
 				<a href="<%=forwardLink%>">Forward it</a>
 			<%}%>
 		<%}%>
-		<p>Complaint Id: <%=result[0].complaint_id%></p>
-		<p>Complaint Subject: <%=result[0].complaint_subject%></p>
-		<p>Complaint Text: <%=result[0].complaint_text%></p>
+		<div class="details">
+		<p>Complaint Id: #<%=result[0].complaint_id%></p>
 		<p>Date: <%=String(result[0].cdate).slice(0,15)%></p>
 		<p>Department Name: <%=result[0].dept_name%></p>
-		<br/>
+		<p>Complaint Subject: <%=result[0].complaint_subject%></p>
+		<p>Complaint Text: <%=result[0].complaint_text%></p>
+		</div>
 		<%if(result[0].from_to != null){%>	
 			<% for(var i=0;i<result.length;i++ ){ %>
-			   	<p>Date: <%=String(result[i].date).slice(0,15)%></p>
-				<%if(result[i].from_to[0]=='S'){%>
-					<p>Secy: <%=result[i].reply_text%></p>
-				<%}else if(result[i].from_to[0]=='T'){%>
-					<p>Student: <%=result[i].reply_text%></p>
+				<% if((result[i].from_to[0]=='S' && role=='secy') || (result[i].from_to[0]=='T' && role=='student') || (result[i].from_to[0]=='A' && role=='admin')){%>
+					<div class="cards" style="align-items: flex-end;" >
+					<div class="card bg-light mb-3 text-right" style="width: 30%;">
 				<%}else{%>
-					<p>Admin: <%=result[i].reply_text%></p>
+					<div class="cards" style="align-items: flex-start;" >
+					<div class="card text-white bg-dark mb-3" style="width: 30%;">
 				<%}%>
-				<br/>
+					<div class="card-body">
+						<%if(result[i].from_to[0]=='S'){%>
+							<h6 class="card-title"><strong>Secy</strong></h6>
+						<%}else if(result[i].from_to[0]=='T'){%>
+							<h6 class="card-title"><strong>Student</strong></h6>
+						<%}else{%>
+							<h6 class="card-title"><strong>Admin</strong></h6>
+						<%}%>
+						<p class="card-text"><%=result[i].reply_text%></p>
+						<p class="card-subtitle mb-2 text-muted"><%=String(result[i].date).slice(0,15)%></p>
+					</div>
+				</div>
+				</div>
 			<%}%>
 		<%}%>
 		<%if(result[0].resolved == 0){%>
-			<%if((role == 'secy' && result[0].student_id != null) || role == 'admin'){%>
-				<%var resolveLink = '../resolve/?id='+result[0].complaint_id+'&date='+result[0].cdate;%>
-				<a href="<%=resolveLink%>">Resolved</a>
-			<%}%>
-			<%if((role == 'student') || (role == 'secy' && result[0].student_id == null)){%>
-				<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
-				<a href="<%=deleteLink%>">Delete Complaint</a>
-			<%}%>
+			
 			<form method="post">
-				<p>Reply to this: </p><p><textarea name="reply_text" rows="4" cols="50"></textarea></p>
-				<p>Date: <input type="text" name="date" readonly id="date"></p>
-				<button type="Submit">Send</button>
+				<div class="form-group">
+				<label for="date">Date</label>
+				<input
+					type="text"
+					name="date"
+					class="form-control"
+					readonly
+					id="date"
+				/>
+				</div>
+				<div class="form-group">
+				<label for="text">Reply to this</label>
+				<textarea
+					class="form-control"
+					id="text"
+					name="reply_text"
+					rows="5"
+				></textarea>
+				</div>
+				<button type="Submit" class=" btn btn-primary">Send</button><br/><br/>
 			</form>
 		<%}%>
 		<%if(((result[0].resolved == 1) &&((role == 'student') || (role == 'secy' && result[0].student_id == null)))){%>
@@ -170,7 +223,7 @@
 				<form method='post'>
 					<input type="number" name="stars" id='stars' value='0'/>
 					<p>Comments:<br/><textarea rows="10" cols="50" name="comments"></textarea></p>
-					<button type="submit">Submit</button>
+					<button type="submit btn btn-primary">Submit</button>
 				</form>
 			<%}else{%>
 				<p>Your Review</p>
@@ -187,7 +240,13 @@
 			<%}%>
 		<%}%>
 	<%}else{%>
-		<p>Data Not Found</p>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Data not Found
+            <button type="button" class="close btn btn-primary" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 	<%}%>
+	</div>
 </body>
 </html>

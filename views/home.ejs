@@ -39,11 +39,18 @@
                 margin: 20px;
                 text-align: center;
         }
+        #role{
+            display: none;
+        }
     </style>
     <script>
         function clickRow(id){
-            console.log(<%=role%>);
-            window.location = '/complaint/?id='+id;
+            var role = document.getElementById('role').innerHTML;
+            var uri = '';
+            if(role!='general')
+            uri = '/' + role;
+            uri += '/complaint/?id=' + id;
+            window.location = uri;
         }
     </script>
 </head>
@@ -84,18 +91,25 @@
     
     <%if (typeof result[0] != 'undefined'){%>
     <div class="container-fluid">
-        <br/>Filter By Department:  
-        <select onchange="filterByDept()" id='filterByDeptName'>
-            <option value="none">No Filter</option>     
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+          <label for="filterByDeptName">Filter By Department</label>
+          <select class="form-control" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
+            <option value="none">No Filter</option>			
             <option value='academic'>Academic</option>
             <option value='sport'>Sports</option>
             <option value='cafeteria'>Cafeteria</option>
-        </select>
-        <br/><br/>
-        Search By Subject:
-        <input type="text" id='search' onkeyup="search()" />
-        <br/><br/>
-    <div class="container-fluid">
+          </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+          <label for="search">Search By Email</label>
+          <input type="text" name="search" class="form-control" id="search" onkeyup="search()" />
+          </div>
+        </div>
+      </div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -116,6 +130,7 @@
                 <%}%>
             </tbody>
         </table>
+        <p id='role'><%=role%></p>
     <%}else{%>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             No Complaints Found
