@@ -20,7 +20,7 @@ function sendQuery(Query,res,fileName){
 router.get('/',(req,res)=>{
 	//Select all customers and return the result object:
 	var query = "SELECT complaint_id,complaint_subject,date,dept_name FROM complaint_list \
-				INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id order by date desc;"
+				INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id and complaint_list.resolved = 0 order by date desc limit 100;"
 	sendQuery(query,res,'index.ejs')	
 })
 
