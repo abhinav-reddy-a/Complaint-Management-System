@@ -165,7 +165,7 @@
 		</div>
 		<%if(result[0].from_to != null){%>	
 			<% for(var i=0;i<result.length;i++ ){ %>
-				<% if((result[i].from_to[0]=='S' && role=='secy') || (result[i].from_to[0]=='T' && role=='student') || (result[i].from_to[0]=='A' && role=='admin')){%>
+				<% if((result[i].from_to[0]=='S' && role=='secy') || (result[i].from_to[0]=='T' && (role=='student' || role == 'general')) || (result[i].from_to[0]=='A' && role=='admin')){%>
 					<div class="cards" style="align-items: flex-end;" >
 					<div class="card bg-light mb-3 text-right" style="width: 30%;">
 				<%}else{%>
