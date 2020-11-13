@@ -79,9 +79,11 @@
             <li class="nav-item">
               <a class="nav-link active" href="./history">History</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./new_complaint">New Complaint</a>
-            </li>
+            <%if(role!='admin'){%>
+	            <li class="nav-item">
+	              <a class="nav-link" href="./new_complaint">New Complaint</a>
+	            </li>
+            <%}%>
             <li class="nav-item">
               <a class="nav-link" href="../auth/logout">LogOut</a>
             </li>
