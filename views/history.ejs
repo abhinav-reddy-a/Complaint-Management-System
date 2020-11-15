@@ -20,9 +20,13 @@
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"
     ></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <style>
         body{
             background-image: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url('http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg');
+            font-family: 'Poppins',sans-serif;
+            background-attachment: fixed;
         }
         .container{
             margin-top: 20px !important;
@@ -41,6 +45,17 @@
         }
         #role{
             display: none;
+        }
+        label{
+          font-family: 'Poppins', sans-serif;
+          color: #fff;
+          font-size: 1.2rem;
+        }
+        .helper{
+          background-color: rgba(0,0,0,0.5);
+          padding: 5px;
+          margin-bottom: 20px;
+          border-radius: 5px;
         }
     </style>
     <script>
@@ -92,11 +107,11 @@
       </nav>
     <div class="container">
     <%if (typeof result[0] != 'undefined'){%>
-      <div class="row">
+      <div class="row helper">
         <div class="col-md-6">
           <div class="form-group">
           <label for="filterByDeptName">Filter By Department</label>
-          <select class="form-control" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
+          <select class="form-control browser-default custom-select" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
             <option value="none">No Filter</option>			
             <option value='academic'>Academic</option>
             <option value='sport'>Sports</option>
@@ -106,8 +121,8 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-          <label for="search">Search By Email</label>
-          <input type="text" name="search" class="form-control" id="search" onkeyup="search()" />
+          <label for="search">Search By Subject</label>
+          <input type="text" name="search" class="form-control" id="search" onkeyup="search()" placeholder="e.g. cafe food" />
           </div>
         </div>
       </div>

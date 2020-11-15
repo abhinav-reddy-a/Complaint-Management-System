@@ -29,7 +29,9 @@
   <style>
 	  body{
 		  background-image: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url('http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg');
-	  }
+		  font-family: 'Poppins',sans-serif !important;
+  		  background-attachment: fixed;
+ 	  }
 	  tr:hover{
 		background-color: #ccc;
 	  }
@@ -58,6 +60,12 @@
 		.dropdown-item{
 			color: #fff;
 		}
+		.helper{
+			background-color: rgba(0,0,0,0.5);
+			padding: 5px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+		}
   </style>
   <script>
 	  function clickRow(id){
@@ -67,7 +75,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <span class="navbar-brand" >Complaint Management System</span>
+        <span class="navbar-brand" ><a href='/' style="text-decoration: none; color: #fff;">Complaint Management System</a></span>
         <button
           class="navbar-toggler"
           type="button"
@@ -105,7 +113,7 @@
 	  <br>
 	<%if (typeof result != 'undefined'){%>
 	<div class="container">
-		<div class="row">
+		<div class="row helper">
 			<div class="col-md-6">
 				<div class="form-group">
 				<label for="filterByDeptName">Filter By Department</label>

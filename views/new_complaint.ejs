@@ -2,12 +2,19 @@
 <html>
   <head>
     <title>New Complaint</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <style>
       body {
-        background-color: #eee !important;
+        background: #eee !important;
+        font-family: 'Poppins', sans-serif !important;
       }
       .container-fluid {
         margin-top: 20px;
+      }
+      input, textarea, select{
+        background-color: #ddd !important;
+        border: 1px solid gray !important;
       }
     </style>
     <script>
@@ -139,6 +146,7 @@
             name="complaint_subject"
             class="form-control"
             id="sub"
+            required
           />
         </div>
         <div class="form-group">
@@ -148,6 +156,7 @@
             id="text"
             name="complaint_text"
             rows="5"
+            required
           ></textarea>
         </div>
 

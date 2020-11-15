@@ -89,11 +89,12 @@
 		}
 		.text-dark{
 			border-radius: 20px 20px 20px 0px !important;
+			border: 1px gray solid;
 		}
 		.bg-secondary{
 			background-color: rgba(0,0,0,0.5) !important;
 			margin: auto;
-			width: 50%;
+			width: 60%;
 			text-align: center;
 			font-size: 1.1rem;
 		}
@@ -104,8 +105,9 @@
 			margin: 5px;
 			border-radius: 5px;
 			color: #000;
-			width: 50%;
+			width: 70% !important;
 			min-height: 150px;
+			text-align: left;
 		}
 		.dropdown-menu{
 			background-color: #343a40 ;
@@ -132,7 +134,7 @@
 <body onload="setDate()">
 	<%if(role == 'general'){%>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-		<span class="navbar-brand" >Complaint Management System</span>
+		<span class="navbar-brand" ><a href='../' style="text-decoration: none; color: #fff;">Complaint Management System</a></span>
 		<button
 		class="navbar-toggler"
 		type="button"
@@ -208,22 +210,7 @@
 	  <%}%>
 	  <div class="container-fluid">
 	<%if(typeof result[0] != 'undefined'){%>
-		<%if(result[0].resolved == 0){%>
-			<%if((role == 'secy' && result[0].student_id != null) || role == 'admin'){%>
-				<%var resolveLink = '../resolve/?id='+result[0].complaint_id+'&date='+result[0].cdate;%>
-				<a href="<%=resolveLink%>"><button class=" btn btn-primary">Resolved</button></a>
-			<%}%>
-			<%if((role == 'student') || (role == 'secy' && result[0].student_id == null)){%>
-				<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
-				<a href="<%=deleteLink%>"><button class=" btn btn-primary">Delete Complaint</button></a>
-			<%}%>
-		<%}%>
-		<%if(role == 'secy'){%>
-			<%if(result[0].admin_id == null && result[0].resolved == 0){%>
-				<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
-				<a href="<%=forwardLink%>"><button class=" btn btn-primary">Forward it</button></a>
-			<%}%>
-		<%}%>
+		
 		<div class="card text-white bg-secondary mb-3">
 		  <h4 class="card-header" style='text-align: center;' id='cid'><strong>Complaint Id: #<%=result[0].complaint_id%></strong></h4>
 		  <div class="card-body">
@@ -236,7 +223,91 @@
 		    	</div>
 		    </div>
 		    <p class="card-text" id='sub'>Complaint Subject: <%=result[0].complaint_subject%></p>
-		    <p class="card-text" >Complaint Text: <div class="ctext"><%=result[0].complaint_text%></div></p>
+<!-- 		    <p class="card-text"><div class="ctext"><p id='ctext1'>Complaint Text:</p> <%=result[0].complaint_text%></div></p>
+ -->
+		    <p class="card-text">
+		    	<div class="card bg-light mb-3 ctext">
+				    <h5 class="card-header" style="text-align: center !important;">Complaint Text</h5>
+				  <div class="card-body">
+				    <p class="card-text"><%=result[0].complaint_text%></p>
+				  </div>
+				</div>
+		    </p>
+
+
+		    <p class="card-text">
+		    	<%if(result[0].resolved == 0){%>
+					<%if((role == 'secy' && result[0].student_id != null) || role == 'admin'){%>
+						<%var resolveLink = '../resolve/?id='+result[0].complaint_id+'&date='+result[0].cdate;%>
+						<a href="<%=resolveLink%>"><button class=" btn btn-primary">Resolved</button></a>
+					<%}%>
+					<%if((role == 'student') || (role == 'secy' && result[0].student_id == null)){%>
+						<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
+						<a href="<%=deleteLink%>"><button class=" btn btn-primary">Delete Complaint</button></a>
+					<%}%>
+				<%}%>
+				<%if(role == 'secy'){%>
+					<%if(result[0].admin_id == null && result[0].resolved == 0){%>
+						<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
+						<a href="<%=forwardLink%>"><button class=" btn btn-primary">Forward it</button></a>
+					<%}%>
+				<%}%>
+		    </p>
+		    <p class="card-text">
+		    	<%if(((result[0].resolved == 1) &&((role == 'student') || (role == 'secy' && result[0].student_id == null)))){%>
+					<%if(result[0].stars == null){%>
+						<button class='stars' onclick='changeRating("1")'><span class="fa fa-star"></span></button>
+						<button class='stars' onclick='changeRating("2")'><span class="fa fa-star"></span></button>
+						<button class='stars' onclick='changeRating("3")'><span class="fa fa-star"></span></button>
+						<button class='stars' onclick='changeRating("4")'><span class="fa fa-star"></span></button>
+						<button class='stars' onclick='changeRating("5")'><span class="fa fa-star"></span></button>
+
+						<form method='post'>
+							<input type="number" name="stars" id='stars' value='0'/>
+							<p>Comments:<br/><textarea rows="5" cols="25" name="comments"></textarea></p>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					<%}else{%>
+						<h5><strong>Your Review</strong></h5>
+						<%for(var i=0;i<5;i++){%>
+							<%if(i<Number(result[0].stars)){%>
+								<span class="fa fa-star checked"></span>
+							<%}else{%>
+								<span class="fa fa-star"></span>
+							<%}%>
+						<%}%>
+						<%if(result[0].comments!=''){%>
+							<p>Comments: <%=result[0].comments%></p>
+						<%}%>
+					<%}%>
+				<%}%>
+				<%if(result[0].resolved == 1 && (role == 'secy' || role == 'admin') && result[0].student_id != null && result[0].stars != null){%>
+					<h5><strong>Student's Review</strong></h5>
+					<%for(var i=0;i<5;i++){%>
+						<%if(i<Number(result[0].stars)){%>
+							<span class="fa fa-star checked"></span>
+						<%}else{%>
+							<span class="fa fa-star"></span>
+						<%}%>
+					<%}%>
+					<%if(result[0].comments!=''){%>
+						<p>Comments: <%=result[0].comments%></p>
+					<%}%>
+				<%}%>
+				<%if(result[0].resolved == 1 && role == 'admin' && result[0].student_id == null && result[0].stars != null){%>
+					<h5><strong>Secy's Review</strong></h5>
+					<%for(var i=0;i<5;i++){%>
+						<%if(i<Number(result[0].stars)){%>
+							<span class="fa fa-star checked"></span>
+						<%}else{%>
+							<span class="fa fa-star"></span>
+						<%}%>
+					<%}%>
+					<%if(result[0].comments!=''){%>
+						<p>Comments: <%=result[0].comments%></p>
+					<%}%>
+				<%}%>
+		    </p>
 		  </div>
 		</div>
 		<!-- <div class="details">
@@ -246,6 +317,11 @@
 		<p id='sub'>Complaint Subject: <%=result[0].complaint_subject%></p>
 		<p>Complaint Text: <%=result[0].complaint_text%></p>
 		</div> -->
+		<%if(result[0].from_to == null){%>
+			<div class="alert alert-danger" role="alert">
+	            No Replies Found
+	        </div>
+		<%}%>
 		<%if(result[0].from_to != null){%>	
 			<% for(var i=0;i<result.length;i++ ){ %>
 				<% if((result[i].from_to[0]=='S' && role=='secy') || (result[i].from_to[0]=='T' && (role=='student' || role == 'general')) || (result[i].from_to[0]=='A' && role=='admin')){%>
@@ -295,39 +371,9 @@
 				<button type="Submit" class=" btn btn-primary">Send</button><br/><br/>
 			</form>
 		<%}%>
-		<%if(((result[0].resolved == 1) &&((role == 'student') || (role == 'secy' && result[0].student_id == null)))){%>
-			<%if(result[0].stars == null){%>
-				<button class='stars' onclick='changeRating("1")'><span class="fa fa-star"></span></button>
-				<button class='stars' onclick='changeRating("2")'><span class="fa fa-star"></span></button>
-				<button class='stars' onclick='changeRating("3")'><span class="fa fa-star"></span></button>
-				<button class='stars' onclick='changeRating("4")'><span class="fa fa-star"></span></button>
-				<button class='stars' onclick='changeRating("5")'><span class="fa fa-star"></span></button>
-
-				<form method='post'>
-					<input type="number" name="stars" id='stars' value='0'/>
-					<p>Comments:<br/><textarea rows="10" cols="50" name="comments"></textarea></p>
-					<button type="submit btn btn-primary">Submit</button>
-				</form>
-			<%}else{%>
-				<p>Your Review</p>
-				<%for(var i=0;i<5;i++){%>
-					<%if(i<Number(result[0].stars)){%>
-						<span class="fa fa-star checked"></span>
-					<%}else{%>
-						<span class="fa fa-star"></span>
-					<%}%>
-				<%}%>
-				<%if(result[0].comments!=''){%>
-					<p>Comments: <%=result[0].comments%></p>
-				<%}%>
-			<%}%>
-		<%}%>
+		
 	<%}%>
-	<%if(result[0].from_to == null){%>
-		<div class="alert alert-danger" role="alert">
-            Replies not recorded
-        </div>
-	<%}%>
+	
 	</div>
 </body>
 </html>

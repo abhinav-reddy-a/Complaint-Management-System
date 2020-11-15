@@ -78,8 +78,8 @@ router.get('/history',(req,res)=>{
 router.get('/complaint',(req,res)=>{
 	checkLogin(req,res);
 	var id = req.query.id;
-	var query = 'SELECT complaint_list.complaint_id,complaint_list.dept_id,complaint_list.admin_id,complaint_subject,complaint_text,complaint_list.date "cdate",\
-				dept_name,reply_text,reply_list.date,from_to,resolved \
+	var query = 'SELECT complaint_list.complaint_id,complaint_list.dept_id,complaint_list.student_id,complaint_list.admin_id,complaint_subject,complaint_text,complaint_list.date "cdate",\
+				dept_name,reply_text,reply_list.date,from_to,resolved, complaint_list.stars, complaint_list.comments \
 				FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+'\
 				and admin_id = '+req.session.id+') \
 				LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
@@ -130,7 +130,7 @@ router.get('/info',(req,res)=>{
 	var query = 'SELECT admin_list.admin_id,admin_name,admin_email,department_list.dept_name,\
 				 sum(complaint_list.stars)/count(complaint_list.stars) "stars", sum(complaint_list.days)/count(complaint_list.days) "days" \
 				 FROM ((admin_list LEFT JOIN department_list on admin_list.dept_id = department_list.dept_id)\
-				 LEFT JOIN complaint_list ON admin_list.admin_id = complaint_list.admin_id and complaint_list.resolved = 1 and complaint_list.stars != "null")\
+				 LEFT JOIN complaint_list ON admin_list.admin_id = complaint_list.admin_id and complaint_list.resolved = 1)\
 				 GROUP BY admin_list.admin_id;';
 	db.query(query,function(err, result, fields){
 		checkError(err,res);
