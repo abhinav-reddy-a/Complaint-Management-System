@@ -21,9 +21,15 @@
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"
     ></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 	
 	<style>
 		body{
-			background-color: #eee !important;
+			background-image: url('https://images.unsplash.com/photo-1544030834-45f2dcb88b4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
+			font-family: 'Poppins', sans-serif !important;
+			/* background-repeat: no-repeat; */
+  			background-size: cover;
+  			background-attachment: fixed;
 		}
 		.checked {
 		  color: orange;
@@ -38,6 +44,16 @@
 		.card {
 			text-align: center;
 			border: 1px gray solid;
+		}
+		label{
+			color: #fff;
+			font-size: 1.2rem;
+		}
+		.dropdown-menu{
+			background-color: #343a40 ;
+		}
+		.dropdown-item{
+			color: #fff;
 		}
 	</style>
 </head>
@@ -63,21 +79,15 @@
 			<li class="nav-item">
 			<a class="nav-link" href='../../'>Home</a>
 			</li>
-			<%if(result[0].admin_email){%>
-			<li class="nav-item active">
-			<a class="nav-link" href='../../admin/info'>Admin Info</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Info
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="../../admin/info">Admin</a>
+				<a class="dropdown-item" href="../../secy/info">Secy</a>
+				</div>
 			</li>
-			<li class="nav-item">
-			<a class="nav-link" href='../../secy/info'>Secy Info</a>
-			</li>
-			<%}else{%>
-				<li class="nav-item">
-				<a class="nav-link" href='../../admin/info'>Admin Info</a>
-				</li>
-				<li class="nav-item active">
-				<a class="nav-link" href='../../secy/info'>Secy Info</a>
-				</li>
-			<%}%>
 			<li class="nav-item">
 			<a class="nav-link" href="../auth/google">Login With Google</a>
 			</li>
@@ -85,7 +95,7 @@
 		</div>
   	</nav>
 	<br>
-  <div class="container-fluid">
+  <div class="container">
 	<%if (typeof result != 'undefined'){%>
 		<div class="row">
 			<div class="col-md-6">
@@ -102,7 +112,7 @@
 			<div class="col-md-6">
 				<div class="form-group">
 				<label for="search">Search By Email</label>
-				<input type="text" name="search" class="form-control" id="search" onkeyup="search()" />
+				<input type="text" name="search" class="form-control" id="search" onkeyup="search()" placeholder="e.g. abc123@iiti.ac.in" />
 				</div>
 			</div>
 		</div>
