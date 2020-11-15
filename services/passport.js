@@ -17,7 +17,7 @@ passport.deserializeUser((id,done)=>{
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: "https://complaint-management-system-cs.herokuapp.com//auth/google/callback"
+    callbackURL: "/auth/google/callback"
   },
   (accessToken, refreshToken, profile, done) => {
     User.findOne({googleId:profile.id})
