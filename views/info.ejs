@@ -22,12 +22,12 @@
       crossorigin="anonymous"
     ></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 	
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
 	<style>
 		body{
-			background-image: url('https://images.unsplash.com/photo-1544030834-45f2dcb88b4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
+			background-image: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url('http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg');
 			font-family: 'Poppins', sans-serif !important;
-			/* background-repeat: no-repeat; */
   			background-size: cover;
   			background-attachment: fixed;
 		}
@@ -55,11 +55,14 @@
 		.dropdown-item{
 			color: #fff;
 		}
+		.container{
+			margin-top: -50px;
+		}
 	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-		<span class="navbar-brand">Complaint Management System</span>
+		<span class="navbar-brand" >Complaint Management System</span>
 		<button
 		class="navbar-toggler"
 		type="button"
@@ -94,6 +97,8 @@
 		</ul>
 		</div>
   	</nav>
+  <br>
+  <br>
 	<br>
   <div class="container">
 	<%if (typeof result != 'undefined'){%>
@@ -101,8 +106,8 @@
 			<div class="col-md-6">
 				<div class="form-group">
 				<label for="filterByDeptName">Filter By Department</label>
-				<select class="form-control" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
-					<option value="none">No Filter</option>			
+				<select class="browser-default custom-select" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
+					<option value="none">No Filter</option>
 					<option value='academic'>Academic</option>
 					<option value='sport'>Sports</option>
 					<option value='cafeteria'>Cafeteria</option>
@@ -116,7 +121,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
 			<% for(var i = 0;i<result.length;i++){%>
 				<div class="col mb-4 data">
@@ -129,7 +134,7 @@
 						<p class="card-text">Avg no. of days taken to solve <strong><%= result[i].days || 'N/A'%></strong></p>
 						</div>
 						<div class="card-footer">
-							<div class="Rating">	
+							<div class="Rating">
 								<%if(result[i].stars != null){%>
 									<%for(var j=0;j<5;j++){%>
 										<%if(j<Number(result[i].stars)){%>
