@@ -10,7 +10,7 @@ const db = sql.createConnection({
 //connecting to database
 db.connect((err) => {
     if(err){
-        console.log("Make sure the database server is running and credentials in db.js");
+        console.log("Make sure the database server is running and credentials given are correct in db.js");
         console.log(err);
     }
     else{
