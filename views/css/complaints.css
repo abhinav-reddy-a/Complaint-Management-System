@@ -1,0 +1,50 @@
+body {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url("http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg");
+	font-family: "Poppins", sans-serif !important;
+	background-attachment: fixed;
+}
+tr:hover {
+	background-color: #ccc;
+	cursor: pointer;
+}
+table {
+	border: 1px solid #dee2e6;
+	background-color: #fff;
+}
+.alert {
+	width: 97.5%;
+	margin: 20px;
+	text-align: center;
+}
+.navbar {
+	font-family: "Poppins", sans-serif;
+	color: black !important;
+}
+label {
+	font-family: "Poppins", sans-serif;
+	color: #fff;
+	font-size: 1.2rem;
+}
+.dropdown-menu {
+	background-color: #343a40;
+}
+.dropdown-item {
+	color: #fff;
+}
+.helper {
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 5px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	margin: 5px;
+	margin-bottom: 10px;
+}
+#sign_in {
+	height: 30px;
+	width: auto;
+}
+a {
+	text-decoration: none;
+	color: #fff;
+}

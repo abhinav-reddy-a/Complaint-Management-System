@@ -1,0 +1,98 @@
+.checked {
+	color: orange;
+}
+.card-header {
+	text-align: center !important;
+}
+.stars {
+	border: none;
+	background-color: transparent;
+}
+#stars {
+	display: none;
+}
+body {
+	/*background-color: rgba(0,0,0,0.1) !important;*/
+	font-family: "Poppins", sans-serif;
+	background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png") !important;
+	background-attachment: fixed;
+}
+.container-fluid {
+	margin-top: 20px !important;
+}
+.card {
+	padding: 0px !important;
+	margin: 5px;
+}
+.cards {
+	display: flex;
+	flex-direction: column;
+}
+.card-body {
+	margin: 0px !important;
+	padding: 10px !important;
+}
+.details {
+	background-color: rgba(255, 255, 255, 0.6);
+	padding: 10px;
+	margin: 10px;
+}
+.text-right {
+	background-color: #0084ff !important;
+	color: white;
+	border-radius: 20px 20px 0px 20px !important;
+}
+.text-right .card-body .text-muted {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.text-dark {
+	border-radius: 20px 20px 20px 0px !important;
+	border: 1px gray solid;
+}
+.bg-secondary {
+	background-color: rgba(0, 0, 0, 0.6) !important;
+	margin: auto;
+	width: 60%;
+	text-align: center;
+	font-size: 1.1rem;
+	border-radius: 10px !important;
+}
+.ctext {
+	margin: auto !important;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+	color: #000;
+	width: 70% !important;
+	min-height: 150px;
+	text-align: left;
+}
+.dropdown-menu {
+	background-color: #343a40;
+}
+.dropdown-item {
+	color: #fff;
+}
+#sign_in {
+	height: 30px;
+	width: auto;
+}
+a {
+	text-decoration: none;
+	color: #fff;
+}
+@media only screen and (max-width: 600px) {
+	.text-right {
+		width: 80% !important;
+	}
+	.text-dark {
+		width: 80% !important;
+	}
+	.ctext {
+		width: 97%;
+	}
+	.bg-secondary {
+		width: 100%;
+	}
+}

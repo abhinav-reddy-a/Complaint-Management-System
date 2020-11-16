@@ -3,354 +3,183 @@
 <head>
     <meta charset="utf-8">
     <title>Complaint Management System</title>
-    <script>
-        function setDate(){
-            var date = document.getElementById('date');
-            var d = new Date();
-            date.value = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-        }
-        function changeRating(n){
-	    	var num = Number(n);
-	    	var stars = document.getElementsByClassName('fa');
-	    	document.getElementById('stars').value = num;
-	        for(var i=0;i<5;i++){
-	        	if(i<num)
-	        	stars[i].className = 'fa fa-star checked';
-	            else
-	        	stars[i].className = 'fa fa-star';
-	        }
-	    }
-    </script>
+	<script src="/js/index.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-      crossorigin="anonymous"
-    ></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
-<link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
-	<style>
-		.checked {
-		  color: orange;
-		}
-		.stars{
-			border: none;
-		    background-color: transparent;
-		}
-		#stars{
-			display: none;
-		}
-        body{
-            /*background-color: rgba(0,0,0,0.1) !important;*/
-            font-family: 'Poppins', sans-serif;
-            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png') !important;
-            background-attachment: fixed;
-        }
-        .container-fluid{
-            margin-top: 20px !important;
-		}
-		.card{
-			padding: 0px !important;
-			margin: 5px;
-		}
-		.cards{
-			display: flex;
-			flex-direction: column;
-		}
-		.card-body{
-			margin: 0px !important;
-			padding: 10px !important;
-		}
-		.details{
-			background-color: rgba(255,255,255,0.6);
-			padding: 10px;
-			margin: 10px;
-		}
-		.text-right{
-			background-color: #0084ff !important;
-			color: white;
-			border-radius: 20px 20px 0px 20px !important;
-		}
-		.text-right .card-body .text-muted{
-			color: rgba(255,255,255,0.8) !important;
-		}
-		.text-dark{
-			border-radius: 20px 20px 20px 0px !important;
-			border: 1px gray solid;
-		}
-		.bg-secondary{
-			background-color: rgba(0,0,0,0.6) !important;
-			margin: auto;
-			width: 60%;
-			text-align: center;
-			font-size: 1.1rem;
-			border-radius: 10px !important;
-		}
-		.ctext{
-			margin: auto !important;
-			background-color: rgba(255,255,255,0.8);
-			padding: 10px;
-			margin: 5px;
-			border-radius: 5px;
-			color: #000;
-			width: 70% !important;
-			min-height: 150px;
-			text-align: left;
-		}
-		.dropdown-menu{
-			background-color: #343a40 ;
-		}
-		.dropdown-item{
-			color: #fff;
-		}
-     #sign_in{
-     	height: 30px;
-     	width: auto;
-     }
-		@media only screen and (max-width: 600px){
-			.text-right{
-				width: 80% !important;
-			}
-			.text-dark{
-				width: 80% !important;
-			}
-			.ctext{
-				width: 97%;
-			}
-			.bg-secondary{
-				width: 100%;
-			}
-		}
-	</style> 
-	<script>
-	  $(document).ready(function() {
-		 // executes when HTML-Document is loaded and DOM is ready
-		// console.log("document is ready");
-		$(".card").addClass("shadow-lg ");
-
-		// document ready
-		});
-	</script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous" ></script>
+  	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
+	<link href='/css/complaint.css' rel="stylesheet">
 </head>
 <body onload="setDate()">
 	<%if(role == 'general'){%>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-		<span class="navbar-brand" ><a href='../' style="text-decoration: none; color: #fff;">Complaint Management System</a></span>
-		<button
-		class="navbar-toggler"
-		type="button"
-		data-toggle="collapse"
-		data-target="#navbarNavDropdown"
-		aria-controls="navbarNavDropdown"
-		aria-expanded="false"
-		aria-label="Toggle navigation"
-		>
-		<span class="navbar-toggler-icon"></span>
-		</button>
-		<div
-		class="collapse navbar-collapse justify-content-end"
-		id="navbarNavDropdown"
-		>
-		<ul class="navbar-nav">
-			<li class="nav-item">
-			<a class="nav-link" href='../'>Home</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link active" href='../complaints'>Complaints</a>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Info
-				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				<a class="dropdown-item" href="../../admin/info">Admin</a>
-				<a class="dropdown-item" href="../../secy/info">Secy</a>
-				</div>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" href="../auth/google"><img src="./images/signin.jpg" alt="Login With Google" id='sign_in' /></a>
-			</li>
-		</ul>
-		</div>
-  	</nav>
+			<span class="navbar-brand" ><a href='../'>Complaint Management System</a></span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown" >
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href='../'>Home</a>
+					</li>
+					<li class="nav-item">
+					  	<a class="nav-link active" href='../complaints'>Complaints</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Info</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="../../admin/info">Admin</a>
+							<a class="dropdown-item" href="../../secy/info">Secy</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../auth/google"><img src="/images/signin.jpg" alt="Login With Google" id='sign_in' /></a>
+					</li>
+				</ul>
+			</div>
+  		</nav>
 	<%}%>
-	<%// console.log('role: ',role); %>
 	<%if(role == 'student' || role == 'secy' || role == 'admin'){%>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-		<span class="navbar-brand">Hello <%=name%></span>
-		<button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-		<div
-		  class="collapse navbar-collapse justify-content-end"
-		  id="navbarNavDropdown"
-		>
-		  <ul class="navbar-nav">
-			<li class="nav-item">
-			  <a class="nav-link" href="../home">Home</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link" href="../history">History</a>
-			</li>
-			<%if(role != 'admin'){%>
-			<li class="nav-item">
-			  <a class="nav-link" href="../new_complaint">New Complaint</a>
-			</li>
-			<%}%>
-			<li class="nav-item">
-			  <a class="nav-link" href="../../auth/logout">LogOut</a>
-			</li>
-		  </ul>
-		</div>
-	  </nav>
-	  <%}%>
-	  <div class="container-fluid">
-	<%if(typeof result[0] != 'undefined'){%>
-		
-		<div class="card text-white bg-secondary mb-3">
-		  <h4 class="card-header" style='text-align: center;' id='cid'><strong>Complaint Id: #<%=result[0].complaint_id%></strong></h4>
-		  <div class="card-body">
-		  	<div class="row">
-		  		<div class="col-sm-12 col-lg-12 card-text order-sm-left">
-		    		<p id='dname'>Department Name: <%=result[0].dept_name%></p>
-		    	</div>
-		    	<div  class="col-sm-12 col-lg-12 card-text order-sm-right">
-		    		<p id='cdate'>Date: <%=String(result[0].cdate).slice(0,15)%></p>
-		    	</div>
-		    </div>
-		    <p class="card-text" id='sub'>Complaint Subject: <%=result[0].complaint_subject%></p>
-<!-- 		    <p class="card-text"><div class="ctext"><p id='ctext1'>Complaint Text:</p> <%=result[0].complaint_text%></div></p>
- -->
-		    <p class="card-text">
-		    	<div class="card bg-light mb-3 ctext">
-				    <h5 class="card-header" style="text-align: center !important;">Complaint Text</h5>
-				  <div class="card-body">
-				    <p class="card-text"><%=result[0].complaint_text%></p>
-				  </div>
-				</div>
-		    </p>
-
-
-		    <p class="card-text">
-		    	<%if(result[0].resolved == 0){%>
-					<%if((role == 'secy' && result[0].student_id != null) || role == 'admin'){%>
-						<%var resolveLink = '../resolve/?id='+result[0].complaint_id+'&date='+result[0].cdate;%>
-						<a href="<%=resolveLink%>"><button class=" btn btn-primary">Resolved</button></a>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+			<span class="navbar-brand">Hello <%=name%></span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+	        	<span class="navbar-toggler-icon"></span>
+	      	</button>
+			<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown" >
+			  	<ul class="navbar-nav">
+					<li class="nav-item">
+					  	<a class="nav-link" href="../home">Home</a>
+					</li>
+					<li class="nav-item">
+				  		<a class="nav-link" href="../history">History</a>
+					</li>
+					<%if(role != 'admin'){%>
+						<li class="nav-item">
+				  			<a class="nav-link" href="../new_complaint">New Complaint</a>
+						</li>
 					<%}%>
-					<%if((role == 'student') || (role == 'secy' && result[0].student_id == null)){%>
-						<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
-						<a href="<%=deleteLink%>"><button class=" btn btn-primary">Delete Complaint</button></a>
-					<%}%>
-				<%}%>
-				<%if(role == 'secy'){%>
-					<%if(result[0].admin_id == null && result[0].resolved == 0){%>
-						<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
-						<a href="<%=forwardLink%>"><button class=" btn btn-primary">Forward it</button></a>
-					<%}%>
-				<%}%>
-		    </p>
-		    <p class="card-text">
-		    	<%if(((result[0].resolved == 1) &&((role == 'student') || (role == 'secy' && result[0].student_id == null)))){%>
-					<%if(result[0].stars == null){%>
-					<h4>Enter Your Review</h4>
-						<button class='stars' onclick='changeRating("1")'><span class="fa fa-star"></span></button>
-						<button class='stars' onclick='changeRating("2")'><span class="fa fa-star"></span></button>
-						<button class='stars' onclick='changeRating("3")'><span class="fa fa-star"></span></button>
-						<button class='stars' onclick='changeRating("4")'><span class="fa fa-star"></span></button>
-						<button class='stars' onclick='changeRating("5")'><span class="fa fa-star"></span></button>
-
-						<form method='post'>
-							<input type="number" name="stars" id='stars' value='0'/>
-							<p>Comments:<br/><textarea rows="5" cols="20" name="comments"></textarea></p>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</form>
-					<%}else{%>
-						<h5><strong>Your Review</strong></h5>
-						<%for(var i=0;i<5;i++){%>
-							<%if(i<Number(result[0].stars)){%>
-								<span class="fa fa-star checked"></span>
-							<%}else{%>
-								<span class="fa fa-star"></span>
+					<li class="nav-item">
+				  		<a class="nav-link" href="../../auth/logout">LogOut</a>
+					</li>
+			  	</ul>
+			</div>
+		</nav>
+	<%}%>
+	<div class="container-fluid">
+		<%if(typeof result[0] != 'undefined'){%>
+			<div class="card text-white bg-secondary mb-3">
+		  		<h4 class="card-header" id='cid'><strong>Complaint Id: #<%=result[0].complaint_id%></strong></h4>
+		  		<div class="card-body">
+		  			<div class="row">
+		  				<div class="col-sm-12 col-lg-12 card-text order-sm-left">
+		    				<p id='dname'>Department Name: <%=result[0].dept_name%></p>
+		    			</div>
+		    			<div  class="col-sm-12 col-lg-12 card-text order-sm-right">
+		    				<p id='cdate'>Date: <%=String(result[0].cdate).slice(0,15)%></p>
+		    			</div>
+		    		</div>
+		    		<p class="card-text" id='sub'>Complaint Subject: <%=result[0].complaint_subject%></p>
+		    		<p class="card-text">
+			    		<div class="card bg-light mb-3 ctext">
+					    	<h5 class="card-header">Complaint Text</h5>
+						  	<div class="card-body">
+						    	<p class="card-text"><%=result[0].complaint_text%></p>
+						  	</div>
+						</div>
+		    		</p>
+					<p class="card-text">
+		    			<%if(result[0].resolved == 0){%>
+							<%if((role == 'secy' && result[0].student_id != null) || role == 'admin'){%>
+								<%var resolveLink = '../resolve/?id='+result[0].complaint_id+'&date='+result[0].cdate;%>
+								<a href="<%=resolveLink%>"><button class=" btn btn-primary">Resolved</button></a>
+							<%}%>
+							<%if((role == 'student') || (role == 'secy' && result[0].student_id == null)){%>
+								<%var deleteLink = '../delete/?id='+result[0].complaint_id;%>
+								<a href="<%=deleteLink%>"><button class=" btn btn-primary">Delete Complaint</button></a>
 							<%}%>
 						<%}%>
-						<%if(result[0].comments!=''){%>
-							<p>Comments: <%=result[0].comments%></p>
+						<%if(role == 'secy'){%>
+							<%if(result[0].admin_id == null && result[0].resolved == 0){%>
+								<%var forwardLink = '../forward/?id='+result[0].complaint_id+'&did='+result[0].dept_id;%>
+								<a href="<%=forwardLink%>"><button class=" btn btn-primary">Forward it</button></a>
+							<%}%>
 						<%}%>
-					<%}%>
-				<%}%>
-				<%if(result[0].resolved == 1 && (role == 'secy' || role == 'admin') && result[0].student_id != null && result[0].stars != null){%>
-					<h5><strong>Student's Review</strong></h5>
-					<%for(var i=0;i<5;i++){%>
-						<%if(i<Number(result[0].stars)){%>
-							<span class="fa fa-star checked"></span>
-						<%}else{%>
-							<span class="fa fa-star"></span>
+				    </p>
+				    <p class="card-text">
+				    	<%if(((result[0].resolved == 1) &&((role == 'student') || (role == 'secy' && result[0].student_id == null)))){%>
+							<%if(result[0].stars == null){%>
+							<h4>Enter Your Review</h4>
+								<button class='stars' onclick='changeRating("1")'><span class="fa fa-star"></span></button>
+								<button class='stars' onclick='changeRating("2")'><span class="fa fa-star"></span></button>
+								<button class='stars' onclick='changeRating("3")'><span class="fa fa-star"></span></button>
+								<button class='stars' onclick='changeRating("4")'><span class="fa fa-star"></span></button>
+								<button class='stars' onclick='changeRating("5")'><span class="fa fa-star"></span></button>
+
+								<form method='post'>
+									<input type="number" name="stars" id='stars' value='0'/>
+									<p>Comments:<br/><textarea rows="5" cols="20" name="comments"></textarea></p>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+							<%}else{%>
+								<h5><strong>Your Review</strong></h5>
+								<%for(var i=0;i<5;i++){%>
+									<%if(i<Number(result[0].stars)){%>
+										<span class="fa fa-star checked"></span>
+									<%}else{%>
+										<span class="fa fa-star"></span>
+									<%}%>
+								<%}%>
+								<%if(result[0].comments!=''){%>
+									<p>Comments: <%=result[0].comments%></p>
+								<%}%>
+							<%}%>
 						<%}%>
-					<%}%>
-					<%if(result[0].comments!=''){%>
-						<p>Comments: <%=result[0].comments%></p>
-					<%}%>
-				<%}%>
-				<%if(result[0].resolved == 1 && role == 'admin' && result[0].student_id == null && result[0].stars != null){%>
-					<h5><strong>Secy's Review</strong></h5>
-					<%for(var i=0;i<5;i++){%>
-						<%if(i<Number(result[0].stars)){%>
-							<span class="fa fa-star checked"></span>
-						<%}else{%>
-							<span class="fa fa-star"></span>
+						<%if(result[0].resolved == 1 && (role == 'secy' || role == 'admin') && result[0].student_id != null && result[0].stars != null){%>
+							<h5><strong>Student's Review</strong></h5>
+							<%for(var i=0;i<5;i++){%>
+								<%if(i<Number(result[0].stars)){%>
+									<span class="fa fa-star checked"></span>
+								<%}else{%>
+									<span class="fa fa-star"></span>
+								<%}%>
+							<%}%>
+							<%if(result[0].comments!=''){%>
+								<p>Comments: <%=result[0].comments%></p>
+							<%}%>
 						<%}%>
+						<%if(result[0].resolved == 1 && role == 'admin' && result[0].student_id == null && result[0].stars != null){%>
+							<h5><strong>Secy's Review</strong></h5>
+							<%for(var i=0;i<5;i++){%>
+								<%if(i<Number(result[0].stars)){%>
+									<span class="fa fa-star checked"></span>
+								<%}else{%>
+									<span class="fa fa-star"></span>
+								<%}%>
+							<%}%>
+							<%if(result[0].comments!=''){%>
+								<p>Comments: <%=result[0].comments%></p>
+							<%}%>
+						<%}%>
+				    </p>
+		  		</div>
+			</div>
+			<%if(result[0].from_to == null){%>
+				<div class="alert alert-danger" role="alert">No Replies Found</div>
+			<%}%>
+			<%if(result[0].from_to != null){%>	
+				<% for(var i=0;i<result.length;i++ ){ %>
+					<% if((result[i].from_to[0]=='S' && role=='secy') || (result[i].from_to[0]=='T' && (role=='student' || role == 'general')) || (result[i].from_to[0]=='A' && role=='admin')){%>
+						<div class="cards" style="align-items: flex-end;" >
+						<div class="card bg-light mb-3 text-right" style="width: 30%;">
+					<%}else{%>
+						<div class="cards" style="align-items: flex-start;" >
+						<div class="card text-dark bg-light mb-3" style="width: 30%;">
 					<%}%>
-					<%if(result[0].comments!=''){%>
-						<p>Comments: <%=result[0].comments%></p>
-					<%}%>
-				<%}%>
-		    </p>
-		  </div>
-		</div>
-		<!-- <div class="details">
-		<h3 id='cid'>Complaint Id: #<%=result[0].complaint_id%></h3>
-		<p id='date'>Date: <%=String(result[0].cdate).slice(0,15)%></p>
-		<p id='dname'>Department Name: <%=result[0].dept_name%></p>
-		<p id='sub'>Complaint Subject: <%=result[0].complaint_subject%></p>
-		<p>Complaint Text: <%=result[0].complaint_text%></p>
-		</div> -->
-		<%if(result[0].from_to == null){%>
-			<div class="alert alert-danger" role="alert">
-	            No Replies Found
-	        </div>
-		<%}%>
-		<%if(result[0].from_to != null){%>	
-			<% for(var i=0;i<result.length;i++ ){ %>
-				<% if((result[i].from_to[0]=='S' && role=='secy') || (result[i].from_to[0]=='T' && (role=='student' || role == 'general')) || (result[i].from_to[0]=='A' && role=='admin')){%>
-					<div class="cards" style="align-items: flex-end;" >
-					<div class="card bg-light mb-3 text-right" style="width: 30%;">
-				<%}else{%>
-					<div class="cards" style="align-items: flex-start;" >
-					<div class="card text-dark bg-light mb-3" style="width: 30%;">
-				<%}%>
 					<div class="card-body">
 						<%if(result[i].from_to[0]=='S'){%>
 							<h6 class="card-title"><strong>Secy</strong></h6>
@@ -362,38 +191,24 @@
 						<p class="card-text"><%=result[i].reply_text%></p>
 						<p class="card-subtitle mb-2 text-muted"><%=String(result[i].date).slice(0,15)%></p>
 					</div>
-				</div>
-				</div>
+					</div>
+					</div>
+				<%}%>
+			<%}%>
+			<%if(result[0].resolved == 0){%>
+				<form method="post">
+					<div class="form-group">
+						<label for="date">Date</label>
+						<input type="text" name="date" class="form-control" readonly id="date" />
+					</div>
+					<div class="form-group">
+						<label for="text">Reply to this</label>
+						<textarea class="form-control" id="text" name="reply_text" rows="5" ></textarea>
+					</div>
+					<button type="Submit" class=" btn btn-primary">Send</button><br/><br/>
+				</form>
 			<%}%>
 		<%}%>
-		<%if(result[0].resolved == 0){%>
-			
-			<form method="post">
-				<div class="form-group">
-				<label for="date">Date</label>
-				<input
-					type="text"
-					name="date"
-					class="form-control"
-					readonly
-					id="date"
-				/>
-				</div>
-				<div class="form-group">
-				<label for="text">Reply to this</label>
-				<textarea
-					class="form-control"
-					id="text"
-					name="reply_text"
-					rows="5"
-				></textarea>
-				</div>
-				<button type="Submit" class=" btn btn-primary">Send</button><br/><br/>
-			</form>
-		<%}%>
-		
-	<%}%>
-	
 	</div>
 </body>
 </html>

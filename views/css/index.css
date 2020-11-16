@@ -1,0 +1,136 @@
+body {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url("http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg");
+	font-family: "Poppins", sans-serif !important;
+	background-attachment: fixed;
+}
+
+.alert {
+	width: 97.5%;
+	margin: 20px;
+	text-align: center;
+}
+.navbar {
+	font-family: "Poppins", sans-serif;
+	color: black !important;
+}
+
+.dropdown-menu {
+	background-color: #343a40;
+}
+.dropdown-item {
+	color: #fff;
+}
+
+@keyframes down {
+	from {
+		top: 5%;
+		opacity: 0;
+	}
+	to {
+		top: 30%;
+		opacity: 1;
+	}
+}
+
+@keyframes down2 {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+#main {
+	width: 60%;
+	margin: auto;
+	vertical-align: middle;
+	text-align: center;
+	color: white;
+	font-family: "Monoton", cursive;
+	/*font-size:150% !important;*/
+	animation-name: down;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	padding: 20px;
+	border-radius: 10px;
+	/*background-color: rgba(0,0,0,0.5);*/
+	position: absolute;
+	top: 30%;
+	font-weight: bold;
+	left: 20%;
+}
+
+#info {
+	width: 60%;
+	color: white;
+	text-align: center;
+	margin: auto;
+	animation-name: down2;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	font-family: "Goldman", cursive;
+	position: absolute;
+	top: 50%;
+	font-size: 1.3em;
+	left: 20%;
+	font-weight: bold;
+}
+#sign_in {
+	height: 30px;
+	width: auto;
+}
+
+footer {
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	color: white;
+	background-color: black;
+}
+
+@media only screen and (max-width: 600px) {
+	#main {
+		width: 90%;
+		top: 10%;
+		left: 5.5%;
+	}
+	#info {
+		left: 4%;
+		width: 90%;
+		top: 45%;
+	}
+	@keyframes down {
+		from {
+			top: 3%;
+			opacity: 0;
+		}
+		to {
+			top: 10%;
+			opacity: 1;
+		}
+	}
+
+	@keyframes down2 {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+}
+i {
+	color: #fff;
+}
+i:hover {
+	color: #007bff;
+}
+.links {
+	color: #fff;
+}
+.links:hover {
+	color: #007bff;
+	text-decoration: none;
+}

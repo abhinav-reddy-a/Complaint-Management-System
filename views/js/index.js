@@ -28,3 +28,41 @@ function search(){
         }
     }
 }
+
+function setDate(){
+    var date = document.getElementById('date');
+    var d = new Date();
+    date.value = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+}
+
+function changeRating(n){
+    var num = Number(n);
+    var stars = document.getElementsByClassName('fa');
+    document.getElementById('stars').value = num;
+    for(var i=0;i<5;i++){
+        if(i<num)
+        stars[i].className = 'fa fa-star checked';
+        else
+        stars[i].className = 'fa fa-star';
+    }
+}
+
+$(document).ready(function() {
+    // executes when HTML-Document is loaded and DOM is ready
+    // console.log("document is ready");
+    $(".card").addClass("shadow-lg ");
+    // document ready
+});
+
+function clickRow(id){
+    window.location = '/complaint/?id='+id;
+}
+
+function clickRowHistory(id){
+            var role = document.getElementById('role').innerHTML;
+            var uri = '';
+            if(role!='general')
+            uri = '/' + role;
+            uri += '/complaint/?id=' + id;
+            window.location = uri;
+        }

@@ -4,160 +4,86 @@
     <meta charset="utf-8">
     <title>Complaint Management System</title>
     <script src="/js/index.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-      crossorigin="anonymous"
-    ></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style>
-        body{
-            background-image: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url('http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg');
-            font-family: 'Poppins',sans-serif;
-            background-attachment: fixed;
-        }
-        .container{
-            margin-top: 20px !important;
-        }
-        tr:hover{
-            background-color: #ccc;
-        }
-        table{
-            border: 1px solid #dee2e6;
-            background-color: #fff;
-        }
-        .alert{
-                width: 97.5%;
-                margin: 20px;
-                text-align: center;
-        }
-        #role{
-            display: none;
-        }
-        label{
-          font-family: 'Poppins', sans-serif;
-          color: #fff;
-          font-size: 1.2rem;
-        }
-        .helper{
-          background-color: rgba(0,0,0,0.5);
-          padding: 5px;
-          margin-bottom: 20px;
-          border-radius: 5px;
-          margin: 5px;
-          margin-bottom: 10px;
-        }
-     tr:hover{
-      cursor: pointer;
-     }
-    </style>
-    <script>
-        function clickRow(id){
-            var role = document.getElementById('role').innerHTML;
-            var uri = '';
-            if(role!='general')
-            uri = '/' + role;
-            uri += '/complaint/?id=' + id;
-            window.location = uri;
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous" ></script>
+  	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="/css/history.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <span class="navbar-brand">Hello <%=name%></span>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+          	<span class="navbar-toggler-icon"></span>
         </button>
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNavDropdown"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="./home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="./history">History</a>
-            </li>
-            <%if(role!='admin'){%>
-	            <li class="nav-item">
-	              <a class="nav-link" href="./new_complaint">New Complaint</a>
-	            </li>
-            <%}%>
-            <li class="nav-item">
-              <a class="nav-link" href="../auth/logout">LogOut</a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown" >
+          	<ul class="navbar-nav">
+            	<li class="nav-item">
+              		<a class="nav-link" href="./home">Home</a>
+            	</li>
+            	<li class="nav-item">
+              		<a class="nav-link active" href="./history">History</a>
+            	</li>
+            	<%if(role!='admin'){%>
+	            	<li class="nav-item">
+	              		<a class="nav-link" href="./new_complaint">New Complaint</a>
+	            	</li>
+            	<%}%>
+            	<li class="nav-item">
+              		<a class="nav-link" href="../auth/logout">LogOut</a>
+            	</li>
+          	</ul>
         </div>
-      </nav>
+    </nav>
     <div class="container">
-    <%if (typeof result[0] != 'undefined'){%>
-      <div class="row helper">
-        <div class="col-md-6">
-          <div class="form-group">
-          <label for="filterByDeptName">Filter By Department</label>
-          <select class="form-control browser-default custom-select" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
-            <option value="none">No Filter</option>			
-            <option value='academic'>Academic</option>
-            <option value='sport'>Sports</option>
-            <option value='cafeteria'>Cafeteria</option>
-          </select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-          <label for="search">Search By Subject</label>
-          <input type="text" name="search" class="form-control" id="search" onkeyup="search()" placeholder="e.g. cafe food" />
-          </div>
-        </div>
-      </div>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Subject</th>
-                <th>Department</th>
-                <th>Date</th>
-            </tr>
-            </thead>
-            <% for(var i = 0;i<result.length;i++){%>
-        	    <tr class="data"  onclick="clickRow(<%=result[i].complaint_id%>)">
-                    <td class='id'><%=result[i].complaint_id%></td>
-                    <td class="subject"><%=result[i].complaint_subject%></td>
-                    <td class="dept"><%=result[i].dept_name%></td>
-                    <td><%=String(result[i].date).slice(0,15)%></td>
-                </tr>
-        	<%}%>
-        </table>
-        <p id='role'><%=role%></p>
-    <%}else{%>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            No Complaints Found
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <%}%>
-  </div>
+	    <%if (typeof result[0] != 'undefined'){%>
+	      	<div class="row helper">
+	        	<div class="col-md-6">
+	          		<div class="form-group">
+	          			<label for="filterByDeptName">Filter By Department</label>
+	          			<select class="form-control browser-default custom-select" id="filterByDeptName" name="dept_name" onchange="filterByDept()" >
+				            <option value="none">No Filter</option>			
+				            <option value='academic'>Academic</option>
+				            <option value='sport'>Sports</option>
+				            <option value='cafeteria'>Cafeteria</option>
+				        </select>
+	          		</div>
+	        	</div>
+	        	<div class="col-md-6">
+	          		<div class="form-group">
+	          			<label for="search">Search By Subject</label>
+	          			<input type="text" name="search" class="form-control" id="search" onkeyup="search()" placeholder="e.g. cafe food" />
+	          		</div>
+	       		</div>
+	      	</div>
+	        <table class="table">
+	          	<thead class="thead-dark">
+		            <tr>
+		                <th>ID</th>
+		                <th>Subject</th>
+		                <th>Department</th>
+		                <th>Date</th>
+		            </tr>
+	            </thead>
+	            <% for(var i = 0;i<result.length;i++){%>
+	        	    <tr class="data"  onclick="clickRowHistory(<%=result[i].complaint_id%>)">
+	                    <td class='id'><%=result[i].complaint_id%></td>
+	                    <td class="subject"><%=result[i].complaint_subject%></td>
+	                    <td class="dept"><%=result[i].dept_name%></td>
+	                    <td><%=String(result[i].date).slice(0,15)%></td>
+	                </tr>
+	        	<%}%>
+	        </table>
+	        <p id='role'><%=role%></p>
+	    <%}else{%>
+	        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	            No Complaints Found
+	            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                <span aria-hidden="true">&times;</span>
+	            </button>
+	        </div>
+	    <%}%>
+  	</div>
 </body>
 </html>
