@@ -22,7 +22,7 @@ function checkError(err,res){
 function sendQuery(req,res,Query,fileName){
 	db.query(Query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.render(fileName,{result:result,name:req.user.name,role:'secy'});	
 	});
 }
@@ -106,10 +106,10 @@ router.post('/complaint',(req,res)=>{
 			comments : req.body.comments
 		}
 	}
-	console.log(query);
+	// console.log(query);
 	db.query(query,post,(err,result)=> {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		var link = '/secy/complaint/?id='+req.query.id;
 		res.redirect(link);
 	})
@@ -122,7 +122,7 @@ router.get('/new_complaint',(req,res)=>{
 
 router.post('/new_complaint',(req,res) => { //post method for submitting a complaint the body of request should contain respective methods
 	checkLogin(req,res);
-	console.log(req.body);
+	// console.log(req.body);
 	var query = 'INSERT INTO complaint_list SET ?'
 	var post = {
 		complaint_subject : req.body.complaint_subject,
@@ -135,10 +135,10 @@ router.post('/new_complaint',(req,res) => { //post method for submitting a compl
 		complaint_id : null,
 		resolved : 0
 	}
-	console.log(query);
+	// console.log(query);
 	db.query(query,post,(err,result)=> {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.redirect('/secy/home');	
 	})	
 })
@@ -149,7 +149,7 @@ router.get('/delete',(req,res)=>{
 	var query = 'DELETE FROM complaint_list where complaint_id = '+id+' and secy_id = '+req.session.id;
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.redirect('/secy/home');
 	});	
 })
@@ -159,9 +159,9 @@ router.get('/resolve',(req,res)=>{
 	var id = req.query.id;
 	var d = new Date();
 	var obj = findDate(req.query.date);
-	//console.log(d.getHours());
+	// console.log(d.getHours());
 	var date = d.getFullYear()+'-'+String(Number(d.getMonth())+1)+'-'+d.getDate();
-	//console.log('date: ', date);
+	// console.log('date: ', date);
 	var datei = obj.year+'-'+obj.month+'-'+obj.date;
 	var dt1 = obj.month+'/'+obj.date+'/'+obj.year;
 	var dt2 = String(Number(d.getMonth())+1)+'/'+d.getDate()+'/'+d.getFullYear();
@@ -170,7 +170,7 @@ router.get('/resolve',(req,res)=>{
 				 WHERE complaint_id='+req.query.id+' and secy_id = '+req.session.id+' and date = "'+datei+'";';
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.redirect('/secy/home');
 	});	
 })
@@ -181,7 +181,7 @@ router.get('/forward',(req,res)=>{
 	var query = 'UPDATE complaint_list SET admin_id='+req.query.did+' WHERE complaint_id='+req.query.id+' and secy_id = '+req.session.id;
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.redirect('/secy/home');
 	});	
 })
@@ -195,7 +195,7 @@ router.get('/info',(req,res)=>{
 				 GROUP BY secy_list.secy_id;';
 	db.query(query,function(err, result, fields){
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.render('info.ejs',{result: result});
 	})
 })

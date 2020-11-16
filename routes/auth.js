@@ -40,8 +40,8 @@ function checkEmail(email, req, res) {
 		'select secy_id from secy_list where secy_email = "' + email + '";';
 	db.query(query, function (err, result, fields) {
 		checkError(err, res);
-		console.log(query);
-		console.log(result);
+		// console.log(query);
+		// console.log(result);
 		if (typeof result[0] != "undefined") {
 			req.session.user = keys.secyKey;
 			req.session.id = result[0].secy_id;
@@ -54,7 +54,7 @@ function checkEmail(email, req, res) {
 				'";';
 			db.query(query, function (err1, result1, fields1) {
 				checkError(err1, res);
-				console.log(result1);
+				// console.log(result1);
 				if (typeof result1[0] != "undefined") {
 					req.session.user = keys.adminKey;
 					req.session.id = result1[0].admin_id;
@@ -66,7 +66,7 @@ function checkEmail(email, req, res) {
 						'";';
 					db.query(query, function (err2, result2, fields2) {
 						checkError(err2, res);
-						console.log(result2);
+						// console.log(result2);
 						if (typeof result2[0] != "undefined") {
 							req.session.user = keys.studentKey;
 							req.session.id = result2[0].roll_no;

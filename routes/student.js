@@ -27,7 +27,7 @@ router.get('/home',(req,res)=>{
 				ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 0 order by date desc;"
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.render('home.ejs',{result:result,name:req.user.name,role:'student'});
 	});	
 })
@@ -40,7 +40,7 @@ router.get('/history',(req,res)=>{
 				ON department_list.dept_id = complaint_list.dept_id and student_id = "+studentId+" and resolved = 1 order by date desc;"
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.render('history.ejs',{result:result,name:req.user.name,role:'student'});	
 	});	
 })
@@ -55,7 +55,7 @@ router.get('/complaint',(req,res)=>{
 				 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.render('complaint.ejs',{result:result,role:'student',name:req.user.name});
 	});	
 })
@@ -79,10 +79,10 @@ router.post('/complaint',(req,res)=>{
 			comments : req.body.comments
 		}
 	}
-	console.log(query);
+	// console.log(query);
 	db.query(query,post,(err,result)=> {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		var link = '/student/complaint/?id='+req.query.id;
 		res.redirect(link);	
 	})
@@ -95,7 +95,7 @@ router.get('/new_complaint',(req,res)=>{
 
 router.post('/new_complaint',(req,res) => { //post method for submitting a complaint the body of request should contain respective methods
 	checkLogin(req,res);
-	console.log(req.body);
+	// console.log(req.body);
 	var query = 'INSERT INTO complaint_list SET ?'
 	var post = {
 		complaint_subject : req.body.complaint_subject,
@@ -108,10 +108,10 @@ router.post('/new_complaint',(req,res) => { //post method for submitting a compl
 		complaint_id : null,
 		resolved : 0
 	}
-	console.log(query);
+	// console.log(query);
 	db.query(query,post,(err,result)=> {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.redirect('/student/home');
 	})
 })
@@ -122,7 +122,7 @@ router.get('/delete',(req,res)=>{
 	var query = 'DELETE FROM complaint_list where complaint_id = '+id+' and student_id = '+req.session.id;
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.redirect('/student/home');
 	});
 })

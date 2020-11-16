@@ -12,7 +12,7 @@ function checkError(err,res){
 function sendQuery(Query,res,fileName){
 	db.query(Query, function (err, result, fields) {
 		checkError(err,res)
-		console.log(result);
+		// console.log(result);
 	    res.render(fileName,{result:result,role:'general'});
 	});
 }

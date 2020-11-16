@@ -140,7 +140,7 @@
 	<script>
 	  $(document).ready(function() {
 		 // executes when HTML-Document is loaded and DOM is ready
-		console.log("document is ready");
+		// console.log("document is ready");
 		$(".card").addClass("shadow-lg ");
 
 		// document ready
@@ -189,7 +189,7 @@
 		</div>
   	</nav>
 	<%}%>
-	<%console.log('role: ',role); %>
+	<%// console.log('role: ',role); %>
 	<%if(role == 'student' || role == 'secy' || role == 'admin'){%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 		<span class="navbar-brand">Hello <%=name%></span>
@@ -275,6 +275,7 @@
 		    <p class="card-text">
 		    	<%if(((result[0].resolved == 1) &&((role == 'student') || (role == 'secy' && result[0].student_id == null)))){%>
 					<%if(result[0].stars == null){%>
+					<h4>Enter Your Review</h4>
 						<button class='stars' onclick='changeRating("1")'><span class="fa fa-star"></span></button>
 						<button class='stars' onclick='changeRating("2")'><span class="fa fa-star"></span></button>
 						<button class='stars' onclick='changeRating("3")'><span class="fa fa-star"></span></button>
@@ -283,7 +284,7 @@
 
 						<form method='post'>
 							<input type="number" name="stars" id='stars' value='0'/>
-							<p>Comments:<br/><textarea rows="5" cols="25" name="comments"></textarea></p>
+							<p>Comments:<br/><textarea rows="5" cols="20" name="comments"></textarea></p>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					<%}else{%>

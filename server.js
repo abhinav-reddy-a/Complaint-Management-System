@@ -25,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.connect(keys.mongoURI,{useNewUrlParser: true},()=>{
-	console.log('connected to mongodb');
+	console.log('done');
 })
 
 var port = process.env.PORT || 3000;

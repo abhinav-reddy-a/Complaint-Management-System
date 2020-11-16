@@ -22,7 +22,7 @@ function checkError(err,res){
 function sendQuery(Query,req,res,fileName){
 	db.query(Query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.render(fileName,{result:result,name:req.user.name,role:'admin'});	
 	});	
 }
@@ -95,10 +95,10 @@ router.post('/complaint',(req,res)=>{
 		complaint_id : req.query.id,
 		date : req.body.date
 	}
-	console.log(query);
+	// console.log(query);
 	db.query(query,post,(err,result)=> {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		var link = '/admin/complaint/?id='+req.query.id;
 		res.redirect(link);	
 	})
@@ -108,10 +108,10 @@ router.get('/resolve',(req,res)=>{
 	checkLogin(req,res);
 	var id = req.query.id;
 	var d = new Date();
-	console.log('date: ',req.query.date);
+	// console.log('date: ',req.query.date);
 	var obj = findDate(req.query.date);
-	console.log(obj);
-	//console.log(d.getHours());
+	// console.log(obj);
+	// console.log(d.getHours());
 	var date = d.getFullYear()+'-'+String(Number(d.getMonth())+1)+'-'+d.getDate();
 	var datei = obj.year+'-'+obj.month+'-'+obj.date;
 	var dt1 = obj.month+'/'+obj.date+'/'+obj.year;
@@ -121,7 +121,7 @@ router.get('/resolve',(req,res)=>{
 				 WHERE complaint_id = '+req.query.id+' and admin_id = '+req.session.id+' and date = "'+datei+'";';
 	db.query(query, function (err, result, fields) {
 		checkError(err,res);
-		console.log(result);
+		// console.log(result);
 		res.redirect('/admin/home');
 	});	
 })
@@ -134,8 +134,8 @@ router.get('/info',(req,res)=>{
 				 GROUP BY admin_list.admin_id;';
 	db.query(query,function(err, result, fields){
 		checkError(err,res);
-		console.log(result);
-		console.log(date_diff_indays('04/02/2014', '04/03/2014'));
+		// console.log(result);
+		// console.log(date_diff_indays('04/02/2014', '04/03/2014'));
 		res.render('info.ejs',{result: result});
 	})
 })
