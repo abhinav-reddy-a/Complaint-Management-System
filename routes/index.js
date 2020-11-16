@@ -19,9 +19,7 @@ function sendQuery(Query,res,fileName){
 
 router.get('/',(req,res)=>{
 	//Select all customers and return the result object:
-	var query = "SELECT complaint_id,complaint_subject,date,dept_name FROM complaint_list \
-				INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id and complaint_list.resolved = 0 order by date desc limit 100;"
-	sendQuery(query,res,'index.ejs')	
+	res.render('index.ejs')	
 })
 
 router.get('/complaint',(req,res)=>{
@@ -30,6 +28,12 @@ router.get('/complaint',(req,res)=>{
 				 FROM ((complaint_list INNER JOIN department_list ON complaint_list.dept_id = department_list.dept_id and complaint_id = '+id+') \
 				 LEFT JOIN reply_list ON reply_list.complaint_id = '+id+');' ;
 	sendQuery(query,res,'complaint.ejs');
+})
+
+router.get('/complaints',(req,res)=> {
+	var query = "SELECT complaint_id,complaint_subject,date,dept_name FROM complaint_list \
+				INNER JOIN department_list ON department_list.dept_id = complaint_list.dept_id and complaint_list.resolved = 0 order by date desc limit 100;"
+	sendQuery(query,res,'complaints.ejs')
 })
 
 module.exports = router;
