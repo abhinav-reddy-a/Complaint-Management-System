@@ -41,7 +41,7 @@
 
   <style>
 	  body{
-		  background-image: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url('http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg');
+		  background-image: linear-gradient( rgba(0,0,0,.7), rgba(0,0,0,.7) ), url('http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg');
 		  font-family: 'Poppins',sans-serif !important;
   		  background-attachment: fixed;
  	  }
@@ -65,13 +65,13 @@
 		}
 
     @keyframes down {
-      from{top: 30%;opacity:0; }
-      to{top:40%;opacity: 1;}
+      from{top: 5%;opacity:0; }
+      to{top:30%;opacity: 1;}
     }
 
     @keyframes down2 {
       from{opacity: 0;}
-      to{opacity: 0.8;}
+      to{opacity: 1;}
     }
 
     #main{
@@ -85,11 +85,17 @@
 	    animation-name:down ;
 	    animation-duration: 2s;
 	    animation-fill-mode: forwards;
-	    background-color: rgba(0,0,0,0.5);
+	    padding: 20px;
+	    border-radius: 10px;
+	    /*background-color: rgba(0,0,0,0.5);*/
+	    position: absolute;
+	    top: 30%;
+	    font-weight: bold;
+      left: 20%;	
     }
 
     #info{
-      width:100%;
+      width:60%;
       color:white;
       text-align: center;
       margin:auto;
@@ -97,7 +103,15 @@
       animation-duration: 2s;
       animation-fill-mode: forwards;
       font-family: 'Goldman', cursive;
-
+      position: absolute;
+      top: 50%;
+      font-size: 1.3em;
+      left: 20%;
+	    font-weight: bold;
+     }
+     #sign_in{
+     	height: 30px;
+     	width: auto;
      }
 
      footer{
@@ -108,7 +122,27 @@
        background-color: black;
      }
 
-     
+    @media only screen and (max-width: 600px) {
+	  #main {
+	    width: 90%;
+	    top: 10%;
+	    left: 5.5%;
+	  }
+	  #info{
+	  	left: 4%;
+	  	width: 90%;
+	  	top: 45%;
+	  }
+	  @keyframes down {
+	      from{top: 3%;opacity:0; }
+	      to{top:10%;opacity: 1;}
+	    }
+
+	    @keyframes down2 {
+	      from{opacity: 0;}
+	      to{opacity: 1;}
+	    }
+	}
 
 
 
@@ -142,7 +176,7 @@
 			  		<a class="nav-link active" href='/'>Home</a>
       			</li>
       			<li class="nav-item">
-			  		<a class="nav-link" href='/complaints'>Unresolved complaints</a>
+			  		<a class="nav-link" href='/complaints'>Complaints</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -157,147 +191,147 @@
 			  		<a class="nav-link" href='#footer'>About Us</a>
 				</li>
             	<li class="nav-item">
-					<a class="nav-link" href="/auth/google">Login With Google</a>
+					<a class="nav-link" href="/auth/google"><img src="./images/signin.jpg" alt="Login With Google" id='sign_in' /></a>
             	</li>
           	</ul>
         </div>
 	  </nav>
 	  <br>
-    <div id="main">
-    	<h1>Complaint Management System</h1>
-    	<h2>IIT Indore</h2>
-    	<div id="info">
-    	<p id="inf0_sub">
-      		Complaint Management system is a platform designed to file, assess and resolve complaints an easy business. The process is very Simple,
-      		open the site, login with institute mail and file a complaint. :)
-      		<br>
-      		You can discuss the complaint, get it resolved and even rate the response too!!
-    	</p>
-  		</div>
-    </div>
+	    <div id="main">
+	    	<h1>Complaint Management System</h1>
+	    	<h2>IIT Indore</h2>
+	    </div>
+	    <div id="info">
+	    	<p id="inf0_sub">
+	      		Complaint Management system is a platform designed to file, assess and resolve complaints an easy business. The process is very Simple,
+	      		open the site, login with institute mail and file a complaint. :)
+	      		<br>
+	      		You can discuss the complaint, get it resolved and even rate the response too!!
+	    	</p>
+	  	</div>
 
-    <footer class="page-footer font-small mdb-color pt-4">
+	    <footer class="page-footer font-small mdb-color pt-4" id='footer'>
 
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left">
+	  <!-- Footer Links -->
+	  <div class="container text-center text-md-left">
 
-    <!-- Footer links -->
-    <div class="row text-center text-md-left mt-3 pb-3">
+	    <!-- Footer links -->
+	    <div class="row text-center text-md-left mt-3 pb-3">
 
-      <!-- Grid column -->
-      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">ABOUT US -<br>IIT INDORE G15</h6>
-        <p>Complaint Management System is designed using HTML, CSS, Jquery and nodeJs by students of IIT Indore for a Group project</p>
-      </div>
-      <!-- Grid column -->
+	      <!-- Grid column -->
+	      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+	        <h6 class="text-uppercase mb-4 font-weight-bold">ABOUT US -<br>IIT INDORE G15</h6>
+	        <p>Complaint Management System is designed using HTML, CSS, Jquery and nodeJs by students of IIT Indore for a Group project</p>
+	      </div>
+	      <!-- Grid column -->
 
-      <hr class="w-100 clearfix d-md-none">
+	      <hr class="w-100 clearfix d-md-none">
 
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">Developers -</h6>
-        <p>
-          Kushaan Gowda
-        </p>
-        <p>
-          Abhinav Reddy Asireddy
-        </p>
-        <p>
-          Keelisetti Lokesh
-        </p>
-        <p>
-          S Bhagwan
-        </p>
-        <p>
-          Rohit Banga
-        </p>
+	      <!-- Grid column -->
+	      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+	        <h6 class="text-uppercase mb-4 font-weight-bold">Developers -</h6>
+	        <p>
+	          Kushaan Gowda
+	        </p>
+	        <p>
+	          Abhinav Reddy Asireddy
+	        </p>
+	        <p>
+	          Keelisetti Lokesh
+	        </p>
+	        <p>
+	          S Bhagwan
+	        </p>
+	        <p>
+	          Rohit Banga
+	        </p>
 
-      </div>
-      <!-- Grid column -->
+	      </div>
+	      <!-- Grid column -->
 
-      <hr class="w-100 clearfix d-md-none">
+	      <hr class="w-100 clearfix d-md-none">
 
-      <!-- Grid column -->
+	      <!-- Grid column -->
 
 
-      <!-- Grid column -->
-      <hr class="w-100 clearfix d-md-none">
+	      <!-- Grid column -->
+	      <hr class="w-100 clearfix d-md-none">
 
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-        <p>
-          <i class="fas fa-home mr-3"></i> IIT INDORE, Simrol, MP, India</p>
-        <p>
-          <i class="fas fa-envelope mr-3"></i><a href='mailto:kushaangowda@yahoo.com' style='text-decoration: none; color: #fff;'>kushaangowda@yahoo.com</a></p>
-        <p>
-          <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-        <p>
-          <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
-      </div>
-      <!-- Grid column -->
+	      <!-- Grid column -->
+	      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+	        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+	        <p>
+	          <i class="fas fa-home mr-3"></i> IIT INDORE, Simrol, MP, India</p>
+	        <p>
+	          <i class="fas fa-envelope mr-3"></i><a href='mailto:kushaangowda@yahoo.com' style='text-decoration: none; color: #fff;'>kushaangowda@yahoo.com</a></p>
+	        <p>
+	          <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+	        <p>
+	          <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+	      </div>
+	      <!-- Grid column -->
 
-    </div>
-    <!-- Footer links -->
+	    </div>
+	    <!-- Footer links -->
 
-    <hr>
+	    <hr>
 
-    <!-- Grid row -->
-    <div class="row d-flex align-items-center" id='footer'>
+	    <!-- Grid row -->
+	    <div class="row d-flex align-items-center">
 
-      <!-- Grid column -->
-      <div class="col-md-7 col-lg-8">
+	      <!-- Grid column -->
+	      <div class="col-md-7 col-lg-8">
 
-        <!--Copyright-->
-        <p class="text-center text-md-left">© 2020 Copyright:
-          <a href="https://mdbootstrap.com/">
-            <strong> MDBootstrap.com</strong>
-          </a>
-        </p>
+	        <!--Copyright-->
+	        <p class="text-center text-md-left">© 2020 Copyright:
+	          <a href="https://mdbootstrap.com/">
+	            <strong> MDBootstrap.com</strong>
+	          </a>
+	        </p>
 
-      </div>
-      <!-- Grid column -->
+	      </div>
+	      <!-- Grid column -->
 
-      <!-- Grid column -->
-      <div class="col-md-5 col-lg-4 ml-lg-0">
+	      <!-- Grid column -->
+	      <div class="col-md-5 col-lg-4 ml-lg-0">
 
-        <!-- Social buttons -->
-        <div class="text-center text-md-right">
-          <ul class="list-unstyled list-inline">
-            <li class="list-inline-item">
-              <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                <i class="fab fa-google-plus-g"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a class="btn-floating btn-sm rgba-white-slight mx-1" >
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
+	        <!-- Social buttons -->
+	        <div class="text-center text-md-right">
+	          <ul class="list-unstyled list-inline">
+	            <li class="list-inline-item">
+	              <a class="btn-floating btn-sm rgba-white-slight mx-1">
+	                <i class="fab fa-facebook-f"></i>
+	              </a>
+	            </li>
+	            <li class="list-inline-item">
+	              <a class="btn-floating btn-sm rgba-white-slight mx-1">
+	                <i class="fab fa-twitter"></i>
+	              </a>
+	            </li>
+	            <li class="list-inline-item">
+	              <a class="btn-floating btn-sm rgba-white-slight mx-1">
+	                <i class="fab fa-google-plus-g"></i>
+	              </a>
+	            </li>
+	            <li class="list-inline-item">
+	              <a class="btn-floating btn-sm rgba-white-slight mx-1" >
+	                <i class="fab fa-linkedin-in"></i>
+	              </a>
+	            </li>
+	          </ul>
+	        </div>
 
-      </div>
-      <!-- Grid column -->
+	      </div>
+	      <!-- Grid column -->
 
-    </div>
-    <!-- Grid row -->
+	    </div>
+	    <!-- Grid row -->
 
-  </div>
-  <!-- Footer Links -->
+	  </div>
+	  <!-- Footer Links -->
 
-</footer>
-<!-- Footer -->
+	</footer>
+	<!-- Footer -->
 
 </body>
 </html>

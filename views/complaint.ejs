@@ -56,8 +56,10 @@
 			display: none;
 		}
         body{
-            background-color: rgba(0,0,0,0.1) !important;
+            /*background-color: rgba(0,0,0,0.1) !important;*/
             font-family: 'Poppins', sans-serif;
+            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png') !important;
+            background-attachment: fixed;
         }
         .container-fluid{
             margin-top: 20px !important;
@@ -97,6 +99,7 @@
 			width: 60%;
 			text-align: center;
 			font-size: 1.1rem;
+			border-radius: 10px !important;
 		}
 		.ctext{
 			margin: auto !important;
@@ -115,6 +118,10 @@
 		.dropdown-item{
 			color: #fff;
 		}
+     #sign_in{
+     	height: 30px;
+     	width: auto;
+     }
 		@media only screen and (max-width: 600px){
 			.text-right{
 				width: 80% !important;
@@ -164,7 +171,7 @@
 			<a class="nav-link" href='../'>Home</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link active" href='../complaints'>Unresolved complaints</a>
+			  <a class="nav-link active" href='../complaints'>Complaints</a>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -176,7 +183,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="../auth/google">Login With Google</a>
+			<a class="nav-link" href="../auth/google"><img src="./images/signin.jpg" alt="Login With Google" id='sign_in' /></a>
 			</li>
 		</ul>
 		</div>
