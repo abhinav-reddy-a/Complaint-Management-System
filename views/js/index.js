@@ -55,7 +55,7 @@ $(document).ready(function() {
 });
 
 function clickRow(id){
-    window.location = '/complaint/?id='+id;
+    window.location = '/complaint/?id='+id+'#bottom';
 }
 
 function clickRowHistory(id){
@@ -63,6 +63,6 @@ function clickRowHistory(id){
             var uri = '';
             if(role!='general')
             uri = '/' + role;
-            uri += '/complaint/?id=' + id;
+            uri += '/complaint/?id=' + id+'#bottom';
             window.location = uri;
         }

@@ -68,14 +68,13 @@ body {
 	text-align: center;
 	margin: auto;
 	animation-name: down2;
-	animation-duration: 2s;
+	animation-duration: 4s;
 	animation-fill-mode: forwards;
 	font-family: "Goldman", cursive;
 	position: absolute;
 	top: 50%;
-	font-size: 1.3em;
+	font-size: 1.15em;
 	left: 20%;
-	font-weight: bold;
 }
 #sign_in {
 	height: 30px;

@@ -70,7 +70,7 @@
 			</div>
 		</nav>
 	<%}%>
-	<div class="container-fluid">
+	<div class="container-fluid" id='top'>
 		<%if(typeof result[0] != 'undefined'){%>
 			<div class="card text-white bg-secondary mb-3">
 		  		<h4 class="card-header" id='cid'><strong>Complaint Id: #<%=result[0].complaint_id%></strong></h4>
@@ -209,6 +209,8 @@
 				</form>
 			<%}%>
 		<%}%>
+		<a href="#top"><button class="btn btn-primary" style="position: fixed; bottom: 10px; right: 10px;">Go To Top</button></a>
+		<div id='bottom'></div>
 	</div>
 </body>
 </html>
