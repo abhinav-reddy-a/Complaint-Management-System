@@ -9,7 +9,7 @@ NodeJs
 MySQL
 
 ## Clone This Repo
-Add API keys in config > dev.js
-in CMD, mnavigate to this particular folder and run   
+Add API keys in config > dev.js   
+In CMD, mnavigate to this particular folder and run   
 `$ npm install`   
 `$ node server.js`  
