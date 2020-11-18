@@ -45,6 +45,10 @@ label {
 	width: auto;
 }
 a {
-	text-decoration: none;
-	color: #fff;
+	text-decoration: none !important;
+	color: #fff !important;
+}
+#homeLink:hover {
+	text-decoration: none !important;
+	color: #fff !important;
 }

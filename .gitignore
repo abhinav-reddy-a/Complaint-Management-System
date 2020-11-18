@@ -1,2 +1,5 @@
 # Directories
 node_modules/
+
+# Api files
+config/dev.js
