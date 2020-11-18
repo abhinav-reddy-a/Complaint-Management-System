@@ -10,11 +10,14 @@ NodeJs
 MySQL
   
 ## Clone This Repo
+Clone the repository  
 Create dev.js in config folder    
-Add API keys in config > dev.js   
+Add API keys in config > dev.js    
+     
 ![dev.js file](stuff/dev_file.png)   
+dev.js file   
 
-In CMD, mnavigate to this particular folder and run   
+In CMD, navigate to this particular folder and run   
 `$ npm install`   
 `$ node server.js`   
   
