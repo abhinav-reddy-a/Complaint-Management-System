@@ -90,6 +90,10 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
+	body{
+		transform: scale(2);
+	}
+
 	#main {
 		width: 90%;
 		top: 10%;
@@ -118,9 +122,6 @@ footer {
 		to {
 			opacity: 1;
 		}
-	}
-	body{
-		zoom: 200%;
 	}
 }
 i {
