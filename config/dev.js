@@ -5,5 +5,9 @@ module.exports={
 	cookieKey:'adfgreiauieeavfoiaervra',
 	secyKey: 'farjwebfefoqifbaoiFBYIEWVF',
 	adminKey: 'savgrvWOFUBFIUAuivvil',
-	studentKey: 'eageraflwNAERAJAbjkBBJBJKkjjJBAKE'
+	studentKey: 'eageraflwNAERAJAbjkBBJBJKkjjJBAKE',
+	sqlHost: 'localhost',
+	sqlUser: 'kushaan',
+	sqlPassword: 'abc@123',
+	sqlDatabase: 'complaint_management'
 }

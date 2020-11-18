@@ -1,10 +1,11 @@
-const sql = require('mysql')
+const sql = require('mysql');
+const keys = require('../config/keys');
 
 const db = sql.createConnection({
-    host: "localhost", //host where mysql database hosted
-    user: "kushaan", //username for accessing database
-    password: "abc@123",
-    database:"complaint_management" //port: default to 3306 canbe changed
+    host: keys.sqlHost, //host where mysql database hosted
+    user: keys.sqlUser, //username for accessing database
+    password: keys.sqlPassword,
+    database:keys.sqlDatabase //port: default to 3306 canbe changed
 })
 
 //connecting to database

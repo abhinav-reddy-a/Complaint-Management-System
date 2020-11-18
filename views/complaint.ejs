@@ -199,17 +199,17 @@
 				<form method="post">
 					<div class="form-group">
 						<label for="date">Date</label>
-						<input type="text" name="date" class="form-control" readonly id="date" />
+						<input type="text" name="date" class="form-control" readonly id="date" required />
 					</div>
 					<div class="form-group">
 						<label for="text">Reply to this</label>
-						<textarea class="form-control" id="text" name="reply_text" rows="5" ></textarea>
+						<textarea class="form-control" id="text" name="reply_text" rows="5" required></textarea>
 					</div>
 					<button type="Submit" class=" btn btn-primary">Send</button><br/><br/>
 				</form>
 			<%}%>
 		<%}%>
-		<a href="#top"><button class="btn btn-primary" style="position: fixed; bottom: 10px; right: 10px;">Go To Top</button></a>
+		<a href="#top"><button class="btn btn-primary" style="position: fixed; bottom: 20px; right: 20px;">Go To Top</button></a>
 		<div id='bottom'></div>
 	</div>
 </body>
