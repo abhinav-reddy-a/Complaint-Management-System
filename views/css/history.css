@@ -1,6 +1,6 @@
 body {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg");
+		url("../images/iiti_bg.jpg");
 	font-family: "Poppins", sans-serif;
 	background-attachment: fixed;
 }
