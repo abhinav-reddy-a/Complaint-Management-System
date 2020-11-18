@@ -45,10 +45,6 @@ label {
 	height: 30px;
 	width: auto;
 }
-a {
-	text-decoration: none !important;
-	color: #fff !important;
-}
 #homeLink:hover {
 	text-decoration: none !important;
 	color: #fff !important;
