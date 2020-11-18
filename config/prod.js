@@ -9,6 +9,5 @@ module.exports={
 	sqlHost: process.env.SQL_HOST,
 	sqlUser: process.env.SQL_USER,
 	sqlPassword: process.env.SQL_PASSWORD,
-	sqlDatabase: process.env.SQL_DATABASE,
-	absoluteURL: process.env.ABSOLUTE_URL
+	sqlDatabase: process.env.SQL_DATABASE
 }
