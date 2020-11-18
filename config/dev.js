@@ -9,5 +9,6 @@ module.exports={
 	sqlHost: 'localhost',
 	sqlUser: 'kushaan',
 	sqlPassword: 'abc@123',
-	sqlDatabase: 'complaint_management'
+	sqlDatabase: 'complaint_management',
+	absoluteURL: ''
 }

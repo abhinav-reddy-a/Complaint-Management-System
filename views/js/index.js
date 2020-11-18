@@ -47,13 +47,6 @@ function changeRating(n){
     }
 }
 
-$(document).ready(function() {
-    // executes when HTML-Document is loaded and DOM is ready
-    // console.log("document is ready");
-    $(".card").addClass("shadow-lg ");
-    // document ready
-});
-
 function clickRow(id){
     window.location = '/complaint/?id='+id+'#bottom';
 }
