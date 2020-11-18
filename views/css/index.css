@@ -90,10 +90,6 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
-	body{
-		transform: scale(2);
-	}
-
 	#main {
 		width: 90%;
 		top: 10%;
