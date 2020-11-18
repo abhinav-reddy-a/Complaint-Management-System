@@ -3,7 +3,7 @@ body {
 		url("http://studentaffairs.iiti.ac.in/images/IIT-Indore.jpg");
 	font-family: "Poppins", sans-serif !important;
 	background-attachment: fixed;
-	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .alert {
