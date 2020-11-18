@@ -4,6 +4,16 @@ body {
 	font-family: "Poppins", sans-serif;
 	background-attachment: fixed;
 }
+footer p{
+	position: fixed;
+	bottom: -16px;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	right: 0px;
+	background-color: rgba(0,0,0,0.7);
+}
+
 .container {
 	margin-top: 20px !important;
 }

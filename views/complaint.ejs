@@ -209,8 +209,14 @@
 				</form>
 			<%}%>
 		<%}%>
-		<a href="#top"><button class="btn btn-primary" style="position: fixed; bottom: 20px; right: 20px;">Go To Top</button></a>
+		<a href="#top"><button class="btn btn-dark" style="position: fixed; bottom: 30px; right: 20px;">Go To Top</button></a>
+		<br/>
 		<div id='bottom'></div>
+		<%if(role!='general'){%>
+		    <footer>
+		    	<p>Currently signed in as <strong><%=role%></strong></p>
+		    </footer>
+		<%}%>
 	</div>
 </body>
 </html>
