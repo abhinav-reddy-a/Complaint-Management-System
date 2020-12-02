@@ -42,6 +42,13 @@ Now you can add your emailID in either of secy_list, admin_list or student_list,
 ![complaints page](stuff/2.png)      
 ![chat page](stuff/3.png)  
 ![new complaints page](stuff/4.png)    
+
+## Contributors  
+[Kushaan Gowda](https://github.com/kushaangowda/)
+[Abhinav Reddy](https://github.com/pixelbullet)  
+[Keelisetti Lokesh](https://github.com/lokeshkeelisetti)  
+[Bhagavan](https://github.com/satyabhagavan)  
+[Rohit Banga](https://github.com/RohitBanga3)    
    
 #### If you find any errors, feel free to raise an issue :)  
   
