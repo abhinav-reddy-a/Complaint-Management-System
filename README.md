@@ -31,7 +31,9 @@ Name it complaint_management
 In this database, import complaint_management.sql from stuff folder  
 
 Then in CMD, run this code  
-`$ node server.js`  
+`$ node server.js` 
+   
+In browser navigate to the following [URL](http://localhost:3000)  
 Index Page would be visible  
 Now you can add your emailID in either of secy_list, admin_list or student_list, and use the webApp :)
 
@@ -41,4 +43,4 @@ Now you can add your emailID in either of secy_list, admin_list or student_list,
 ![chat page](stuff/3.png)  
 ![new complaints page](stuff/4.png)    
 
-#### If you find any errors or ways of improvement, feel free to raise an issue :)
+#### If you find any errors, feel free to raise an issue :)
