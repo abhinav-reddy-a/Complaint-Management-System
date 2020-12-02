@@ -6,12 +6,12 @@ We have hosted our website on [Heroku](https://complaint-management-system-cs.he
 We have hosted our database [here](https://freemysqlhosting.net/)   
   
 ## Tech Stuff Used
-HTML5, CSS3, JS, Bootstrap   
-NodeJs   
-MySQL
+HTML5, CSS3, JS, Bootstrap    
+NodeJs    
+MySQL  
   
 ## Run This Webapp On Your Local Device
-Install NodeJS 
+Install NodeJS   
 For database, install XAMPP(Windows) or MAMP(MacOS)  
 Clone the repository  
   
@@ -33,14 +33,16 @@ In this database, import complaint_management.sql from stuff folder
 Then in CMD, run this code  
 `$ node server.js` 
    
-In browser navigate to the following [URL](http://localhost:3000)  
+In your browser, navigate to this [URL](http://localhost:3000)  
 Index Page would be visible  
-Now you can add your emailID in either of secy_list, admin_list or student_list, and use the webApp :)
-
+Now you can add your emailID in either of secy_list, admin_list or student_list, and use the webApp :)   
+   
 ## Website Screeenshots    
 ![index page](stuff/1.png)   
 ![complaints page](stuff/2.png)      
 ![chat page](stuff/3.png)  
 ![new complaints page](stuff/4.png)    
-
-#### If you find any errors, feel free to raise an issue :)
+   
+#### If you find any errors, feel free to raise an issue :)  
+  
+  
