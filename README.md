@@ -1,8 +1,9 @@
 # Complaint Management System
 CS 207 Aug 2020 project   
 Complaint Management system is a platform designed to manage complaints in a better way. The process is very Simple, open the site, login with institute mail ID and file a complaint. :)
-You can discuss the complaint, get it resolved and even rate the response too!!   
-[Heroku Link](https://complaint-management-system-cs.herokuapp.com/)   
+You can discuss the complaint, get it resolved and even rate the response too!!  
+We have hosted our website on [Heroku](https://complaint-management-system-cs.herokuapp.com/)    
+We have hosted our database [here](https://freemysqlhosting.net/)   
   
 ## Tech Stuff Used
 HTML5, CSS3, JS, Bootstrap   
