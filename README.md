@@ -10,20 +10,35 @@ HTML5, CSS3, JS, Bootstrap
 NodeJs   
 MySQL
   
-## Clone This Repo
+## Run This Webapp On Your Local Device
+Install NodeJS 
+For database, install XAMPP(Windows) or MAMP(MacOS)  
 Clone the repository  
+  
 Create dev.js in config folder    
 Add API keys in config > dev.js    
      
 ![dev.js file](stuff/dev_file.png)   
 dev.js file   
-
-In CMD, navigate to this particular folder and run   
+   
+In CMD, navigate to Complaint-Management-System folder and run   
 `$ npm install`   
-`$ node server.js`   
-  
+    
+Open XAMPP or MAMP and start SQL and Apache servers  
+In your browser, navigate to this [URL](http://localhost/phpmyadmin/)
+Click on 'NEW' Button to create a new database  
+Name it complaint_management  
+In this database, import complaint_management.sql from stuff folder  
+
+Then in CMD, run this code  
+`$ node server.js`  
+Index Page would be visible  
+Now you can add your emailID in either of secy_list, admin_list or student_list, and use the webApp :)
+
 ## Website Screeenshots    
 ![index page](stuff/1.png)   
 ![complaints page](stuff/2.png)      
 ![chat page](stuff/3.png)  
 ![new complaints page](stuff/4.png)    
+
+#### If you find any errors or ways of improvement, feel free to raise an issue :)
